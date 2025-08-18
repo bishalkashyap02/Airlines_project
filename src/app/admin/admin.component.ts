@@ -27,12 +27,11 @@ export class AdminComponent implements OnInit {
     planename: '',
     source: '',
     destination: '',
+    date:'',
     price: '',
     startTime: '',
     arrivalTime: '',
-    totalTime: '',
-    Travel_Date: '',
-      Seat_class: '',
+    totalTime: ''
   };
   editingFlightId: string | null = null;
 
@@ -165,12 +164,11 @@ export class AdminComponent implements OnInit {
       planename: '',
       source: '',
       destination: '',
+      date:'',
       price: '',
       startTime: '',
       arrivalTime: '',
       totalTime: '',
-      Travel_Date: '',
-      Seat_class: '',
 
 
     };

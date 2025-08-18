@@ -8,24 +8,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.css'],
 })
 export class WelcomeComponent {
-  search = { source: '', destination: '' };
+  search = { source: '', destination: '', date: '' };
   flights: any[] = [];
   message = '';
 
   constructor(private api: ApiService, private router: Router) {}
 
-  searchFlights() {
-    this.api.getFlights().subscribe((allFlights) => {
-      this.flights = allFlights.filter(
-        (f) =>
-          f.source.toLowerCase() === this.search.source.toLowerCase() &&
-          f.destination.toLowerCase() === this.search.destination.toLowerCase()
-      );
-      this.message = this.flights.length
-        ? ''
-        : 'No flights available for this route';
+searchFlights() {
+  this.api.getFlights().subscribe((allFlights) => {
+    this.flights = allFlights.filter((f) => {
+      const matchesSource =
+        f.source.toLowerCase() === this.search.source.toLowerCase();
+      const matchesDestination =
+        f.destination.toLowerCase() === this.search.destination.toLowerCase();
+      let matchesDate = true;
+      if (this.search.date) {
+        const flightDate = new Date(f.date || f.startTime)
+          .toISOString()
+          .split("T")[0];
+        const searchDate = new Date(this.search.date)
+          .toISOString()
+          .split("T")[0];
+        matchesDate = flightDate === searchDate;
+      }
+
+      return matchesSource && matchesDestination && matchesDate;
     });
-  }
+
+    this.message = this.flights.length
+      ? ""
+      : "No flights available for this route & date";
+  });
+}
+
+
 
   bookFlight(flight: any) {
     this.api.bookFlight(flight).subscribe(() => {

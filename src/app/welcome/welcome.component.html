@@ -14,6 +14,9 @@
       <div class="col-md">
         <input type="text" placeholder="Destination" [(ngModel)]="search.destination" class="form-control form-control-lg">
       </div>
+       <div class="col-md">
+        <input type="date" [(ngModel)]="search.date" class="form-control form-control-lg">
+      </div>
       <div class="col-md-auto">
         <button (click)="searchFlights()" class="btn btn-success btn-lg px-4">Search</button>
       </div>
