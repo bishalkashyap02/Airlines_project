@@ -25,7 +25,7 @@
   </div>
 
   <!-- Dashboard -->
-  <div *ngIf="token" class="dashboard-container1">
+  <div *ngIf="token" class="dashboard-container">
     <div class="header d-flex justify-content-between align-items-center mb-3">
       <h2>Admin Dashboard</h2>
       <button mat-stroked-button color="warn" (click)="logout()" class="logout-btn">Logout</button>
@@ -136,6 +136,8 @@
                     <input matInput [(ngModel)]="newFlight.destination" name="destination" [required]="!editingFlightId" />
                   </mat-form-field>
                 </div>
+
+
                 <div class="col-sm-6 col-md-3">
                   <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Price</mat-label>
@@ -186,6 +188,7 @@
                     <mat-label>Total Time</mat-label>
                     <input
                       matInput
+                   
                       placeholder="Total Time"
                       [(ngModel)]="newFlight.totalTime"
                       name="totalTime"
@@ -193,7 +196,26 @@
                     />
                   </mat-form-field>
                 </div>
+
+                             <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline">
+  <mat-label>Select Date</mat-label>
+  <input matInput [matDatepicker]="picker" placeholder="DD/MM/YYYY">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+                </div>
+
+
+             <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Seat class</mat-label>
+                    <input matInput [(ngModel)]="newFlight.Seat_class" name="Seat_class" [required]="!editingFlightId" />
+                  </mat-form-field>
+                </div>
               </div>
+
+
 
               <div class="action-buttons mt-3 d-flex gap-2 flex-wrap">
                 <button

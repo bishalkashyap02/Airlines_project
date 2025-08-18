@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -30,6 +31,8 @@ export class AdminComponent implements OnInit {
     startTime: '',
     arrivalTime: '',
     totalTime: '',
+    Travel_Date: '',
+      Seat_class: '',
   };
   editingFlightId: string | null = null;
 
@@ -166,6 +169,10 @@ export class AdminComponent implements OnInit {
       startTime: '',
       arrivalTime: '',
       totalTime: '',
+      Travel_Date: '',
+      Seat_class: '',
+
+
     };
     if (form) {
       form.resetForm();

@@ -26,6 +26,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import{MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +58,10 @@ import{MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     NgxMaterialTimepickerModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
   ],
   providers: [
     {
