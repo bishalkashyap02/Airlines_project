@@ -6,6 +6,7 @@ body {
   background-size: cover;
   font-family: Arial, sans-serif;
   min-height: 100vh;
+  overflow-y: hidden;
 }
 /* html, body {
     overflow: hidden;
@@ -13,3 +14,15 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success-snackbar {
+  background: #4caf50; /* green */
+  color: white;
+  font-weight: 500;
+}
+
+.error-snackbar {
+  background: #f44336; /* red */
+  color: white;
+  font-weight: 500;
+}

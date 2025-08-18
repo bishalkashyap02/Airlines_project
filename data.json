@@ -39,6 +39,126 @@
       "username": "mahesh_96",
       "password": "$2b$08$v2d1.Kh5CmioNptRRHR04e.SyoQ4nrpTbi0Kss0l3HNYZDPlDImiG",
       "role": "user"
+    },
+    {
+      "id": 1755502130656,
+      "name": "Bishal Kashyap",
+      "address": "ghjk",
+      "username": ",njk",
+      "password": "$2b$08$1OwNlWYc97DLZ44E98cDY.jIggzEqnxeSmq6m79tfnVJyVevyyAV6",
+      "role": "user"
+    },
+    {
+      "id": 1755502999088,
+      "name": "cvbnm",
+      "address": "cvbnm",
+      "username": "cvbnm",
+      "password": "$2b$08$7m.0xmTL/82nl5pFn9McTePtKc1jLWt2EoUFcVjqTPZjfJFxGvVPq",
+      "role": "user"
+    },
+    {
+      "id": 1755503243039,
+      "name": "zcmn kjvn",
+      "address": "xc mv",
+      "username": "xcm nv",
+      "password": "$2b$08$H//F1ol3bVlcYOLK3gXeV.s/38giIV60o3BdMF73CGRn6NBJAkK4W",
+      "role": "user"
+    },
+    {
+      "id": 1755504111200,
+      "name": "hjkl",
+      "address": "nm,",
+      "username": "nm,.",
+      "password": "$2b$08$HV/2lZEGTQktQPrrSksadOlgZ.WCJWtkC6k8kIZDOiLogtqBnxTOG",
+      "role": "user"
+    },
+    {
+      "id": 1755505627649,
+      "name": "vbv",
+      "address": "vcb",
+      "username": "cvb",
+      "password": "$2b$08$aN.TMAF/hxPgTCVP7XZg5epB.T2nc/pI4hJ8Ss1HVqIPGYfNm0sXG",
+      "role": "user"
+    },
+    {
+      "id": 1755505810139,
+      "name": "hjk",
+      "address": "bnmn,m",
+      "username": "bnm",
+      "password": "$2b$08$vIBqCeAdL8mwWw7jkM4EgOxl/kdCPi70CK23C1rjPR8NDRIpvpXkO",
+      "role": "user"
+    },
+    {
+      "id": 1755506494398,
+      "name": "mx kds",
+      "address": "asd,mc ",
+      "username": "hjk",
+      "password": "$2b$08$tJ/h6s3KId86iahKTEWeE.mNLEP192dQSKQYeYo6XwmWdlYwwiRjO",
+      "role": "user"
+    },
+    {
+      "id": 1755506645393,
+      "name": "fvhgbjk",
+      "address": "fvbhjk",
+      "username": "vbnm",
+      "password": "$2b$08$g7ictBg3noAwbp120/maB.cOiEBMap6XyZ4A0x3eapYzXa3NPTzMi",
+      "role": "user"
+    },
+    {
+      "id": 1755510804671,
+      "name": "",
+      "address": "",
+      "username": "",
+      "password": "$2b$08$tK6ktawmJ7RDv88Yd5SiBeFZTPqqnIKlaCE3ZprunfRIL./TCpOHu",
+      "role": "user"
+    },
+    {
+      "id": 1755510868446,
+      "name": "vbmn",
+      "address": "ghbn ",
+      "username": "fghkmbn",
+      "password": "$2b$08$wwGRcKLjW6GnDSe7BzKExe1FYDpy.0LN8mtaGnKT3RxC3KGzWbw16",
+      "role": "user"
+    },
+    {
+      "id": 1755510882928,
+      "name": "nkj",
+      "address": "nm",
+      "username": "nm",
+      "password": "$2b$08$VY.xKwXa5KLMyBPUiH3YKOoxxMWMD3oLmxgFKu8C4y0u.OKZOr3zW",
+      "role": "user"
+    },
+    {
+      "id": 1755510906378,
+      "name": "nm",
+      "address": "mn,",
+      "username": "jhk",
+      "password": "$2b$08$QKNO8v92Ymw9wNCFMAJzyeQVBqafycl4VjoCI8s78803S7HQLKKWW",
+      "role": "user"
+    },
+    {
+      "id": 1755511035702,
+      "name": "nbm,",
+      "address": " nbm,",
+      "username": "bnm,",
+      "password": "$2b$08$ifhQyN./B26LrsMHDz5.s.rwLB2Hd.yxInMjCHRHuwX4xxyu5gL5e",
+      "role": "user"
+    },
+    {
+      "id": 1755511058193,
+      "name": "nbm,kik",
+      "address": " nbm,",
+      "username": "bnm,kjnlk",
+      "password": "$2b$08$IPwechieEwWX4AoJeQDjquUQYLIe0qacXtFEzQJkAbltZFSeIswrK",
+      "role": "user"
+    },
+    {
+      "id": 1755511076346,
+      "name": "nm,",
+      "address": "n m,",
+      "username": "mn,.",
+      "password": "$2b$08$md41DTuOp0WvNfCkYiwGDOA9wfveQvAE3ydqujnueYzky9cJ6xnu2",
+      "role": "user"
     }
   ],
   "planedetails": [
@@ -553,5 +673,18 @@
       "totalTime": "3h 10m"
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": 1755498671919,
+      "userId": 1754224917427,
+      "planeid": 302,
+      "planename": "Boeing 737 MAX",
+      "source": "New York",
+      "destination": "London",
+      "price": 680,
+      "startTime": "09:00",
+      "arrivalTime": "21:00",
+      "totalTime": "7h"
+    }
+  ]
 }
