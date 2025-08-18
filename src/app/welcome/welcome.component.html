@@ -1,0 +1,69 @@
+<div class="container mt-5">
+  <!-- Page Title -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-primary">✈️ Find Your Flight</h2>
+    <button class="btn btn-outline-info shadow-sm" (click)="goToProfile()">Go to Profile</button>
+  </div>
+
+  <!-- Search Form -->
+  <div class="card shadow-sm border-0 p-4 mb-4">
+    <div class="row g-3">
+      <div class="col-md">
+        <input type="text" placeholder="Source" [(ngModel)]="search.source" class="form-control form-control-lg">
+      </div>
+      <div class="col-md">
+        <input type="text" placeholder="Destination" [(ngModel)]="search.destination" class="form-control form-control-lg">
+      </div>
+      <div class="col-md-auto">
+        <button (click)="searchFlights()" class="btn btn-success btn-lg px-4">Search</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message -->
+  <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+
+  <!-- Flights Table -->
+  <div *ngIf="flights.length" class="table-responsive shadow-sm rounded-3">
+    <table class="table table-hover align-middle">
+      <thead class="table-primary">
+        <tr>
+          <th>Plane ID</th>
+          <th>Name</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th (click)="sortFlights('price')" style="cursor:pointer">
+            Price
+            <span *ngIf="sortKey === 'price'">
+              <i [class]="sortDirection === 'asc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+            </span>
+          </th>
+          <th>Start</th>
+          <th>Arrival</th>
+          <th (click)="sortFlights('totalTime')" style="cursor:pointer">
+            Total Time
+            <span *ngIf="sortKey === 'totalTime'">
+              <i [class]="sortDirection === 'asc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+            </span>
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of flights">
+          <td>{{ f.planeid }}</td>
+          <td>{{ f.planename }}</td>
+          <td>{{ f.source }}</td>
+          <td>{{ f.destination }}</td>
+          <td>${{ f.price }}</td>
+          <td>{{ f.startTime }}</td>
+          <td>{{ f.arrivalTime }}</td>
+          <td>{{ f.totalTime }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm px-3" (click)="bookFlight(f)">Book</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

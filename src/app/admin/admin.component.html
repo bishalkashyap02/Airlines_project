@@ -1,0 +1,333 @@
+<div class="container mt-4">
+  <!-- Login -->
+  <div *ngIf="!token" class="login-container">
+    <h2>Admin Login</h2>
+    <mat-card class="login-card">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="username" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="password"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="login()" class="full-width">
+        Login
+      </button>
+    </mat-card>
+  </div>
+
+  <!-- Dashboard -->
+  <div *ngIf="token" class="dashboard-container">
+    <div class="header d-flex justify-content-between align-items-center mb-3">
+      <h2>Admin Dashboard</h2>
+      <button mat-stroked-button color="warn" (click)="logout()" class="logout-btn">Logout</button>
+    </div>
+
+    <!-- Tabs -->
+    <mat-tab-group [(selectedIndex)]="tabIndex" (selectedIndexChange)="setTabByIndex($event)">
+      <mat-tab label="Users" class="tabs-user">
+        <!-- Users Tab -->
+        <section class="tab-section">
+          <h4>User List</h4>
+          <table mat-table [dataSource]="users" class="mat-elevation-z8 full-width-table" matSort>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+            </ng-container>
+
+            <!-- Username Column -->
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
+              <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+              <td mat-cell *matCellDef="let user">{{ user.role }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['name', 'username', 'role']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['name', 'username', 'role']"></tr>
+          </table>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Bookings">
+        <!-- Bookings Tab -->
+        <section class="tab-section">
+          <h4>Booking List</h4>
+          <table mat-table [dataSource]="bookings" class="mat-elevation-z8 full-width-table" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let booking">{{ booking.id }}</td>
+            </ng-container>
+
+            <!-- User Column -->
+            <ng-container matColumnDef="userId">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>User</th>
+              <td mat-cell *matCellDef="let booking">{{ booking.name }}</td>
+            </ng-container>
+
+            <!-- Plane Column -->
+            <ng-container matColumnDef="planename">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Plane</th>
+              <td mat-cell *matCellDef="let booking">{{ booking.planename }}</td>
+            </ng-container>
+
+            <!-- Source Column -->
+            <ng-container matColumnDef="source">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Source</th>
+              <td mat-cell *matCellDef="let booking">{{ booking.source }}</td>
+            </ng-container>
+
+            <!-- Destination Column -->
+            <ng-container matColumnDef="destination">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
+              <td mat-cell *matCellDef="let booking">{{ booking.destination }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['id','userId','planename','source','destination']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['id','userId','planename','source','destination']"></tr>
+          </table>
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Flights">
+        <!-- Flights Tab -->
+        <section class="tab-section">
+          <h4>Manage Flights</h4>
+          <mat-card class="mb-4 p-3">
+            <form #flightForm="ngForm" (ngSubmit)="editingFlightId ? updateFlight(flightForm) : addFlight(flightForm)">
+              <div class="row g-3">
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Plane ID</mat-label>
+                    <input matInput [(ngModel)]="newFlight.planeid" name="planeid" [required]="!editingFlightId" />
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Plane Name</mat-label>
+                    <input matInput [(ngModel)]="newFlight.planename" name="planename" [required]="!editingFlightId" />
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Source</mat-label>
+                    <input matInput [(ngModel)]="newFlight.source" name="source" [required]="!editingFlightId" />
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Destination</mat-label>
+                    <input matInput [(ngModel)]="newFlight.destination" name="destination" [required]="!editingFlightId" />
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Price</mat-label>
+                    <input
+                      matInput
+                      type="number"
+                      [(ngModel)]="newFlight.price"
+                      name="price"
+                      [required]="!editingFlightId"
+                      min="0"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Start Time</mat-label>
+                    <input
+                      matInput
+                      [ngxTimepicker]="startPicker"
+                      placeholder="Start Time"
+                      readonly
+                      [(ngModel)]="newFlight.startTime"
+                      name="startTime"
+                      (ngModelChange)="calculateTotalTime()"
+                      [required]="!editingFlightId"
+                    />
+                    <ngx-material-timepicker #startPicker></ngx-material-timepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Arrival Time</mat-label>
+                    <input
+                      matInput
+                      [ngxTimepicker]="arrivalPicker"
+                      placeholder="Arrival Time"
+                      readonly
+                      [(ngModel)]="newFlight.arrivalTime"
+                      name="arrivalTime"
+                      (ngModelChange)="calculateTotalTime()"
+                      [required]="!editingFlightId"
+                    />
+                    <ngx-material-timepicker #arrivalPicker></ngx-material-timepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Total Time</mat-label>
+                    <input
+                      matInput
+                      placeholder="Total Time"
+                      [(ngModel)]="newFlight.totalTime"
+                      name="totalTime"
+                      readonly
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="action-buttons mt-3 d-flex gap-2 flex-wrap">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="submit"
+                  *ngIf="editingFlightId"
+                  [disabled]="flightForm.invalid"
+                >
+                  Update Flight
+                </button>
+                <button
+                  mat-raised-button
+                  color="accent"
+                  type="submit"
+                  *ngIf="!editingFlightId"
+                  [disabled]="flightForm.invalid"
+                >
+                  Add Flight
+                </button>
+                <button
+                  mat-stroked-button
+                  color="warn"
+                  type="button"
+                  *ngIf="editingFlightId"
+                  (click)="cancelEdit()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </mat-card>
+
+          <!-- Flight Table -->
+          <table
+            mat-table
+            [dataSource]="flights"
+            class="mat-elevation-z8 full-width-table"
+            matSort
+          >
+            <!-- Columns -->
+            <ng-container matColumnDef="planeid">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.planeid }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="planename">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.planename }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="source">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Source</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.source }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="destination">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.destination }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.price }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="startTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Start</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.startTime }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="arrivalTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Arrival</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.arrivalTime }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalTime">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+              <td mat-cell *matCellDef="let flight">{{ flight.totalTime }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let flight" class="action-buttons">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  aria-label="Edit flight"
+                  (click)="editFlight(flight)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-icon-button
+                  color="warn"
+                  aria-label="Delete flight"
+                  (click)="deleteFlight(flight.planeid)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="[
+                'planeid',
+                'planename',
+                'source',
+                'destination',
+                'price',
+                'startTime',
+                'arrivalTime',
+                'totalTime',
+                'actions'
+              ]"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: [
+                'planeid',
+                'planename',
+                'source',
+                'destination',
+                'price',
+                'startTime',
+                'arrivalTime',
+                'totalTime',
+                'actions'
+              ]"
+            ></tr>
+          </table>
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

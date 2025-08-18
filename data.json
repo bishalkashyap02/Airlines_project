@@ -1,0 +1,557 @@
+{
+  "users": [
+    {
+      "id": 1754806858284,
+      "name": "Sipra",
+      "address": "Berhampur",
+      "username": "Sipra",
+      "password": "$2b$08$Qz7JnpVWe1wRd/Nt3jv6B.KxFA1fRHp.FaHVwIvMJB2I47VEZxFje",
+      "role": "admin"
+    },
+    {
+      "id": 1754809035720,
+      "name": "Dhanada",
+      "address": "Chikiti",
+      "username": "Dhanada",
+      "password": "$2b$08$Syz6VVdn0ePSSro00eLd8e.oJmbVr3OjQaRnyQnpeWUfTkK9Cwjlu",
+      "role": "user"
+    },
+    {
+      "id": 1754809421029,
+      "name": "Abc",
+      "address": "Patrapur",
+      "username": "Abc",
+      "password": "$2b$08$eHMidQQs1ZPvkEUuwASPSeGR8.cX8Ym7dbn/MVSfOhXvwOCKDU3rS",
+      "role": "user"
+    },
+    {
+      "id": 1754224917427,
+      "name": "Bishal Kashyap",
+      "address": "NITS",
+      "username": "Bishal_91",
+      "password": "$2b$08$xXv4AVevPepl9XGFRoZK9uOsueUC2uipSu0DBa8dZB8tnVmdmSsbG",
+      "role": "user"
+    },
+    {
+      "id": 1755492756500,
+      "name": "mahesh ",
+      "address": ".ksjdnbck",
+      "username": "mahesh_96",
+      "password": "$2b$08$v2d1.Kh5CmioNptRRHR04e.SyoQ4nrpTbi0Kss0l3HNYZDPlDImiG",
+      "role": "user"
+    }
+  ],
+  "planedetails": [
+    {
+      "planeid": 101,
+      "planename": "Boeing 737 MAX",
+      "source": "New York",
+      "destination": "Chicago",
+      "price": 180,
+      "startTime": "07:00",
+      "arrivalTime": "09:15",
+      "totalTime": "2h 15m"
+    },
+    {
+      "planeid": 102,
+      "planename": "Boeing 737 MAX",
+      "source": "New York",
+      "destination": "Chicago",
+      "price": 200,
+      "startTime": "10:30",
+      "arrivalTime": "12:45",
+      "totalTime": "2h 15m"
+    },
+    {
+      "planeid": 103,
+      "planename": "Boeing 737 MAX",
+      "source": "New York",
+      "destination": "Chicago",
+      "price": 220,
+      "startTime": "15:00",
+      "arrivalTime": "17:15",
+      "totalTime": "2h 15m"
+    },
+    {
+      "planeid": 201,
+      "planename": "Airbus A350",
+      "source": "London",
+      "destination": "Paris",
+      "price": 120,
+      "startTime": "06:30",
+      "arrivalTime": "08:00",
+      "totalTime": "1h 30m"
+    },
+    {
+      "planeid": 202,
+      "planename": "Airbus A350",
+      "source": "London",
+      "destination": "Paris",
+      "price": 140,
+      "startTime": "09:15",
+      "arrivalTime": "10:45",
+      "totalTime": "1h 30m"
+    },
+    {
+      "planeid": 203,
+      "planename": "Airbus A350",
+      "source": "London",
+      "destination": "Paris",
+      "price": 160,
+      "startTime": "12:00",
+      "arrivalTime": "13:30",
+      "totalTime": "1h 30m"
+    },
+    {
+      "planeid": 301,
+      "planename": "Embraer E195",
+      "source": "Los Angeles",
+      "destination": "Tokyo",
+      "price": 750,
+      "startTime": "10:00",
+      "arrivalTime": "15:00",
+      "totalTime": "14h"
+    },
+    {
+      "planeid": 302,
+      "planename": "Embraer E195",
+      "source": "Los Angeles",
+      "destination": "Tokyo",
+      "price": 800,
+      "startTime": "13:00",
+      "arrivalTime": "18:00",
+      "totalTime": "14h"
+    },
+    {
+      "planeid": 303,
+      "planename": "Embraer E195",
+      "source": "Los Angeles",
+      "destination": "Tokyo",
+      "price": 850,
+      "startTime": "16:00",
+      "arrivalTime": "21:00",
+      "totalTime": "14h"
+    },
+    {
+      "planeid": 301,
+      "planename": "Embraer E195",
+      "source": "Los Angeles",
+      "destination": "Tokyo",
+      "price": 750,
+      "startTime": "10:00",
+      "arrivalTime": "15:00",
+      "totalTime": "14h"
+    },
+    {
+      "planeid": 302,
+      "planename": "Boeing 737 MAX",
+      "source": "New York",
+      "destination": "London",
+      "price": 680,
+      "startTime": "09:00",
+      "arrivalTime": "21:00",
+      "totalTime": "7h"
+    },
+    {
+      "planeid": 303,
+      "planename": "Airbus A320",
+      "source": "Chicago",
+      "destination": "Toronto",
+      "price": 220,
+      "startTime": "14:30",
+      "arrivalTime": "16:30",
+      "totalTime": "2h"
+    },
+    {
+      "planeid": 304,
+      "planename": "Boeing 777",
+      "source": "San Francisco",
+      "destination": "Sydney",
+      "price": 980,
+      "startTime": "22:00",
+      "arrivalTime": "08:00",
+      "totalTime": "15h"
+    },
+    {
+      "planeid": 305,
+      "planename": "Airbus A380",
+      "source": "Dubai",
+      "destination": "Paris",
+      "price": 560,
+      "startTime": "06:15",
+      "arrivalTime": "11:15",
+      "totalTime": "7h"
+    },
+    {
+      "planeid": 306,
+      "planename": "Bombardier CRJ900",
+      "source": "Dallas",
+      "destination": "Denver",
+      "price": 180,
+      "startTime": "08:45",
+      "arrivalTime": "10:15",
+      "totalTime": "1.5h"
+    },
+    {
+      "planeid": 307,
+      "planename": "Boeing 787 Dreamliner",
+      "source": "London",
+      "destination": "New Delhi",
+      "price": 720,
+      "startTime": "12:00",
+      "arrivalTime": "01:00",
+      "totalTime": "8.5h"
+    },
+    {
+      "planeid": 308,
+      "planename": "Airbus A330",
+      "source": "Frankfurt",
+      "destination": "Cape Town",
+      "price": 890,
+      "startTime": "21:00",
+      "arrivalTime": "10:00",
+      "totalTime": "11h"
+    },
+    {
+      "planeid": 309,
+      "planename": "Boeing 747",
+      "source": "Tokyo",
+      "destination": "Los Angeles",
+      "price": 770,
+      "startTime": "16:00",
+      "arrivalTime": "09:00",
+      "totalTime": "12h"
+    },
+    {
+      "planeid": 310,
+      "planename": "ATR 72",
+      "source": "Kolkata",
+      "destination": "Dhaka",
+      "price": 150,
+      "startTime": "07:00",
+      "arrivalTime": "08:15",
+      "totalTime": "1.25h"
+    },
+    {
+      "planeid": 311,
+      "planename": "Boeing 737-800",
+      "source": "Madrid",
+      "destination": "Rome",
+      "price": 190,
+      "startTime": "10:45",
+      "arrivalTime": "12:30",
+      "totalTime": "1.75h"
+    },
+    {
+      "planeid": 312,
+      "planename": "Airbus A321neo",
+      "source": "Singapore",
+      "destination": "Bali",
+      "price": 120,
+      "startTime": "11:30",
+      "arrivalTime": "14:30",
+      "totalTime": "3h"
+    },
+    {
+      "planeid": 313,
+      "planename": "Boeing 767",
+      "source": "Miami",
+      "destination": "Buenos Aires",
+      "price": 650,
+      "startTime": "18:00",
+      "arrivalTime": "06:00",
+      "totalTime": "10h"
+    },
+    {
+      "planeid": 314,
+      "planename": "Airbus A350",
+      "source": "Doha",
+      "destination": "London",
+      "price": 700,
+      "startTime": "08:00",
+      "arrivalTime": "14:30",
+      "totalTime": "7.5h"
+    },
+    {
+      "planeid": 315,
+      "planename": "McDonnell Douglas MD-80",
+      "source": "Los Angeles",
+      "destination": "San Francisco",
+      "price": 90,
+      "startTime": "13:15",
+      "arrivalTime": "14:20",
+      "totalTime": "1.1h"
+    },
+    {
+      "planeid": 316,
+      "planename": "Boeing 737 MAX",
+      "source": "Delhi",
+      "destination": "Mumbai",
+      "price": 110,
+      "startTime": "15:45",
+      "arrivalTime": "17:50",
+      "totalTime": "2.1h"
+    },
+    {
+      "planeid": 317,
+      "planename": "Airbus A320",
+      "source": "Jakarta",
+      "destination": "Singapore",
+      "price": 140,
+      "startTime": "09:25",
+      "arrivalTime": "12:00",
+      "totalTime": "2.5h"
+    },
+    {
+      "planeid": 318,
+      "planename": "Boeing 777",
+      "source": "Toronto",
+      "destination": "Vancouver",
+      "price": 300,
+      "startTime": "17:30",
+      "arrivalTime": "19:45",
+      "totalTime": "5.25h"
+    },
+    {
+      "planeid": 319,
+      "planename": "Embraer E175",
+      "source": "Seattle",
+      "destination": "Portland",
+      "price": 85,
+      "startTime": "07:10",
+      "arrivalTime": "08:00",
+      "totalTime": "0.83h"
+    },
+    {
+      "planeid": 320,
+      "planename": "Boeing 747",
+      "source": "Hong Kong",
+      "destination": "San Francisco",
+      "price": 820,
+      "startTime": "23:00",
+      "arrivalTime": "17:00",
+      "totalTime": "12h"
+    },
+    {
+      "planeid": 321,
+      "planename": "Airbus A220",
+      "source": "Paris",
+      "destination": "Berlin",
+      "price": 160,
+      "startTime": "06:30",
+      "arrivalTime": "08:00",
+      "totalTime": "1.5h"
+    },
+    {
+      "planeid": 322,
+      "planename": "Boeing 787 Dreamliner",
+      "source": "Los Angeles",
+      "destination": "London",
+      "price": 770,
+      "startTime": "19:00",
+      "arrivalTime": "13:00",
+      "totalTime": "10h"
+    },
+    {
+      "planeid": 323,
+      "planename": "Airbus A330neo",
+      "source": "Rome",
+      "destination": "Dubai",
+      "price": 490,
+      "startTime": "15:00",
+      "arrivalTime": "23:00",
+      "totalTime": "6h"
+    },
+    {
+      "planeid": 324,
+      "planename": "Boeing 737 MAX",
+      "source": "Istanbul",
+      "destination": "Athens",
+      "price": 130,
+      "startTime": "10:15",
+      "arrivalTime": "11:50",
+      "totalTime": "1.6h"
+    },
+    {
+      "planeid": 325,
+      "planename": "Airbus A321",
+      "source": "Kuala Lumpur",
+      "destination": "Bangkok",
+      "price": 110,
+      "startTime": "08:00",
+      "arrivalTime": "09:30",
+      "totalTime": "1.5h"
+    },
+    {
+      "planeid": 326,
+      "planename": "Boeing 777",
+      "source": "Madrid",
+      "destination": "New York",
+      "price": 640,
+      "startTime": "12:00",
+      "arrivalTime": "20:00",
+      "totalTime": "8h"
+    },
+    {
+      "planeid": 327,
+      "planename": "Bombardier Q400",
+      "source": "Chennai",
+      "destination": "Bengaluru",
+      "price": 70,
+      "startTime": "07:50",
+      "arrivalTime": "08:55",
+      "totalTime": "1.1h"
+    },
+    {
+      "planeid": 328,
+      "planename": "Embraer E190",
+      "source": "Cape Town",
+      "destination": "Johannesburg",
+      "price": 120,
+      "startTime": "17:10",
+      "arrivalTime": "18:50",
+      "totalTime": "1.66h"
+    },
+    {
+      "planeid": 329,
+      "planename": "Airbus A350",
+      "source": "Shanghai",
+      "destination": "Los Angeles",
+      "price": 890,
+      "startTime": "22:00",
+      "arrivalTime": "16:00",
+      "totalTime": "11h"
+    },
+    {
+      "planeid": 330,
+      "planename": "Boeing 737-900",
+      "source": "Seattle",
+      "destination": "Anchorage",
+      "price": 260,
+      "startTime": "09:20",
+      "arrivalTime": "12:10",
+      "totalTime": "2.83h"
+    },
+    {
+      "planeid": 331,
+      "planename": "Airbus A319",
+      "source": "London",
+      "destination": "Amsterdam",
+      "price": 150,
+      "startTime": "13:40",
+      "arrivalTime": "15:00",
+      "totalTime": "1.33h"
+    },
+    {
+      "planeid": 332,
+      "planename": "Boeing 747",
+      "source": "Sydney",
+      "destination": "Singapore",
+      "price": 500,
+      "startTime": "14:00",
+      "arrivalTime": "20:00",
+      "totalTime": "6h"
+    },
+    {
+      "planeid": 333,
+      "planename": "McDonnell Douglas DC-10",
+      "source": "Houston",
+      "destination": "Chicago",
+      "price": 200,
+      "startTime": "06:30",
+      "arrivalTime": "08:30",
+      "totalTime": "2h"
+    },
+    {
+      "planeid": 334,
+      "planename": "Airbus A320",
+      "source": "Moscow",
+      "destination": "St. Petersburg",
+      "price": 90,
+      "startTime": "11:15",
+      "arrivalTime": "12:45",
+      "totalTime": "1.5h"
+    },
+    {
+      "planeid": 335,
+      "planename": "Boeing 737 MAX",
+      "source": "Doha",
+      "destination": "Cairo",
+      "price": 250,
+      "startTime": "18:00",
+      "arrivalTime": "21:00",
+      "totalTime": "3h"
+    },
+    {
+      "planeid": 336,
+      "planename": "Airbus A330",
+      "source": "Berlin",
+      "destination": "Madrid",
+      "price": 200,
+      "startTime": "07:15",
+      "arrivalTime": "09:45",
+      "totalTime": "2.5h"
+    },
+    {
+      "planeid": 337,
+      "planename": "Boeing 787 Dreamliner",
+      "source": "Delhi",
+      "destination": "Toronto",
+      "price": 940,
+      "startTime": "23:00",
+      "arrivalTime": "08:00",
+      "totalTime": "15h"
+    },
+    {
+      "planeid": 338,
+      "planename": "ATR 72",
+      "source": "Lucknow",
+      "destination": "Varanasi",
+      "price": 60,
+      "startTime": "10:00",
+      "arrivalTime": "11:00",
+      "totalTime": "1h"
+    },
+    {
+      "planeid": 339,
+      "planename": "Airbus A321",
+      "source": "San Francisco",
+      "destination": "Las Vegas",
+      "price": 120,
+      "startTime": "12:20",
+      "arrivalTime": "13:40",
+      "totalTime": "1.33h"
+    },
+    {
+      "planeid": 340,
+      "planename": "Boeing 737-800",
+      "source": "Bangkok",
+      "destination": "Phuket",
+      "price": 90,
+      "startTime": "15:30",
+      "arrivalTime": "17:00",
+      "totalTime": "1.5h"
+    },
+    {
+      "planeid": "102",
+      "planename": "Boeing 737 MAX",
+      "source": "New York\t",
+      "destination": "Chicago",
+      "price": 500,
+      "startTime": "7:00 AM",
+      "arrivalTime": "9:20 AM",
+      "totalTime": "2h 20m"
+    },
+    {
+      "planeid": "102",
+      "planename": "Boeing 737 MAX",
+      "source": "New York\t",
+      "destination": "Chicago",
+      "price": 100,
+      "startTime": "12:00 AM",
+      "arrivalTime": "3:10 AM",
+      "totalTime": "3h 10m"
+    }
+  ],
+  "bookings": []
+}

@@ -1,0 +1,45 @@
+<div class="position-fixed top-50 start-50 translate-middle w-100 vh-100 overflow-hidden d-flex justify-content-center align-items-center">
+  <div class="card shadow-lg border-0" style="max-width: 400px; width: 100%;">
+    <div class="card-body p-4">
+      <h3 class="card-title text-center mb-4 fw-bold text-primary">Login Page</h3>
+
+      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <div class="mb-3">
+          <label for="username" class="form-label fw-semibold">Username</label>
+          <input
+            id="username"
+            type="text"
+            [(ngModel)]="formData.username"
+            name="username"
+            class="form-control"
+            placeholder="Enter your username"
+            required
+          >
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label fw-semibold">Password</label>
+          <input
+            id="password"
+            type="password"
+            [(ngModel)]="formData.password"
+            name="password"
+            class="form-control"
+            placeholder="Enter your password"
+            required
+          >
+        </div>
+
+        <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100 fw-semibold"
+          [disabled]="loginForm.invalid"
+        >
+          Sign In
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

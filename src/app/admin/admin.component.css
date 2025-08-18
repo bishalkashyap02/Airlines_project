@@ -1,0 +1,52 @@
+.container {
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.table {
+  background-color: white;
+}
+
+.table-dark {
+  background-color: #343a40 !important;
+}
+.nav-tabs .nav-link {
+  color: black !important;
+}
+.nav-tabs .nav-link.active {
+  background-color: white !important;
+  color: black !important;
+}
+
+.logout-btn {
+  background-color: red !important;
+  color: white !important;
+  border: none !important;
+}
+.action-btn {
+  margin-right: 6px;
+}
+
+.tabs-user:hover {
+  background-color: #1565c0 !important;
+}
+
+/* Default style */
+::ng-deep .mat-tab-label.tabs-user {
+  background-color: #1976d2 !important;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+::ng-deep .mat-tab-label.tabs-user:hover {
+  background-color: #1565c0 !important;
+}
+
+
+

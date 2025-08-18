@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ApiService } from '../services/api.service';
+
+@Component({
+  selector: 'app-profile', // or your actual selector
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
+})
+export class ProfileComponent implements OnInit {
+  bookings: any[] = [];
+
+  constructor(private api: ApiService, private router: Router) {}
+
+  ngOnInit() {
+    this.loadBookings();
+  }
+
+  loadBookings() {
+    this.api.getBookings().subscribe((res: any[]) => {
+      this.bookings = res;
+    });
+  }
+
+  cancelBooking(id: number) {
+    this.api.cancelBooking(id).subscribe(() => {
+      this.bookings = this.bookings.filter(b => b.id !== id);
+    });
+  }
+
+  logout() {
+    localStorage.removeItem('token'); // remove stored JWT
+    this.router.navigate(['/login']); // redirect to login page
+  }
+}

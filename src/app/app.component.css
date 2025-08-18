@@ -1,0 +1,67 @@
+/* Announcement Bar - Sticky and Blue-Compatible Color */
+.announcement-bar {
+  background-color: #276183; /* Deep Navy Blue-friendly shade */
+  color: white; /* Golden yellow for contrast */
+  font-weight: bold;
+  font-size: 14px;
+  padding: 5px 5px;
+  overflow: hidden;
+  position: sticky; /* Makes it stay at the top */
+  top: 0; /* Stick to very top of page */
+  z-index: 1050;
+  white-space: nowrap;
+}
+
+/* Scrolling Text Animation */
+.scroll-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll-left 25s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Navbar Styling - Adjusted for new color scheme */
+.custom-navbar {
+  background-color: #17435e !important; /* Muted blue */
+  box-shadow: none;
+  margin-top: 30px; /* Sticks just under announcement bar automatically */
+}
+
+/* White Buttons */
+.btn-white {
+  background-color: white;
+  color: black !important;
+  border: none;
+  padding: 5px 12px;
+  margin: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-white:hover {
+  background-color: #f0f0f0;
+  color: black !important;
+}
+
+/* Brand Text */
+.brand-text {
+  color: white !important; /* Matches announcement bar text */
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050; /* above most elements */
+}
