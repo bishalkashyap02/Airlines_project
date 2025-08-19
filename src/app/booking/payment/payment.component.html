@@ -1,0 +1,27 @@
+<form>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Card Holder Name</mat-label>
+    <input matInput placeholder="Enter name on card" [(ngModel)]="payment.cardHolder" name="cardHolder">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Card Number</mat-label>
+    <input matInput type="text" maxlength="16" placeholder="1234 5678 9012 3456"
+           [(ngModel)]="payment.cardNumber" name="cardNumber">
+  </mat-form-field>
+
+  <div class="row">
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Expiry Date</mat-label>
+        <input matInput type="text" placeholder="MM/YY" [(ngModel)]="payment.expiry" name="expiry">
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>CVV</mat-label>
+        <input matInput type="password" maxlength="3" placeholder="***" [(ngModel)]="payment.cvv" name="cvv">
+      </mat-form-field>
+    </div>
+  </div>
+</form>

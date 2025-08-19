@@ -27,9 +27,24 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { BookingComponent } from './booking/booking.component';
+import { DetailsComponent } from './booking/details/details.component';
+import { SecurityComponent } from './booking/security/security.component';
+import { PaymentComponent } from './booking/payment/payment.component';
+import { ButtonModule } from 'primeng/button';
+import { MatStepperModule } from '@angular/material/stepper';
+import { StepsModule } from 'primeng/steps';
+
+import { MenuItem } from 'primeng/api';
+import { RouterModule, Routes } from '@angular/router';
+
+
+ 
+
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HomeComponent,
     AdminComponent,
@@ -38,6 +53,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     WelcomeComponent,
     ProfileComponent,
     NavbarComponent,
+    BookingComponent,
+    DetailsComponent,
+    SecurityComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +82,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatInputModule,
     MatNativeDateModule,
     MatPaginatorModule,
+    
+    ButtonModule,
+    MatStepperModule,
+    StepsModule,
+    RouterModule
   ],
   providers: [
     {

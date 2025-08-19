@@ -68,8 +68,9 @@ export class WelcomeComponent {
     };
 
     this.api.bookFlight(booking).subscribe(() => {
-      alert('Flight booked successfully!');
-      this.router.navigate(['/profile']);
+      // alert('Flight booked successfully!');
+      this.router.navigate(['/booking']);
+
     });
   }
 

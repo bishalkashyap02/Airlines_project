@@ -1,0 +1,51 @@
+<div class="container py-4">
+  <h3 class="mb-3 text-primary">Security Confirmation</h3>
+
+  <form (ngSubmit)="onSubmit()" #securityForm="ngForm" novalidate>
+    <!-- Username -->
+    <div class="mb-3">
+      <label for="username" class="form-label fw-bold">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        [(ngModel)]="securityData.username"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+      <label for="password" class="form-label fw-bold">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="securityData.password"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label fw-bold">Confirm Password</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        name="confirmPassword"
+        [(ngModel)]="securityData.confirmPassword"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger py-2">
+      {{ error }}
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 mt-2">Continue</button>
+  </form>
+</div>

@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow-lg border-0 rounded-4" style="max-width: 600px; width: 100%;">
+    <div class="card-body p-4">
+      <h3 class="card-title text-center mb-4 fw-bold text-primary">Passenger Details</h3>
+      <p class="text-center text-muted mb-4">Please provide your details to continue booking.</p>
+
+      <form (ngSubmit)="onSubmit()" #detailsForm="ngForm">
+        <!-- Full Name -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Full Name</label>
+          <input type="text" [(ngModel)]="formData.name" name="name" class="form-control" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Email</label>
+          <input type="email" [(ngModel)]="formData.email" name="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Phone Number</label>
+          <input type="tel" [(ngModel)]="formData.phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Address</label>
+          <input type="text" [(ngModel)]="formData.address" name="address" class="form-control" placeholder="Enter your address" required>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="error" class="alert alert-danger py-2">{{ error }}</div>
+
+        <!-- Next Button -->
+        <button type="submit" class="btn btn-primary w-100 fw-semibold py-2" [disabled]="detailsForm.invalid">
+          Next
+        </button>
+        
+      </form>
+    </div>
+  </div>
+</div>
