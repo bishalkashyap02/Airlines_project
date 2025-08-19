@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -9,39 +9,57 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  formData = { 
-    name: '', 
-    address: '', 
-    username: '', 
-    password: '', 
-    confirmPassword: '' 
+  formData = {
+    name: '',
+    address: '',
+    username: '',
+    password: '',
+    confirmPassword: ''
   };
+  error = '';
+signupForm: any;
 
-  error: string = '';
-
-  constructor(
-    private auth: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
-  ) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
-    // check confirm password
     if (this.formData.password !== this.formData.confirmPassword) {
       this.error = 'Passwords do not match';
-      this.snackBar.open(this.error, 'Close', { duration: 3000 });
       return;
     }
 
-    // send signup request
     this.auth.signup(this.formData).subscribe({
       next: () => {
-        this.snackBar.open('Signup successful! Please sign in.', 'Close', { duration: 3000 });
-        this.router.navigate(['/signin']);
+        Swal.fire({
+          title: '🎉 Signup Successful!',
+          text: 'Redirecting you to login...',
+          icon: 'success',
+          confirmButtonColor: '#4CAF50',
+          confirmButtonText: 'OK',
+          timer: 5000,
+          timerProgressBar: true
+        }).then(() => {
+          this.router.navigate(['/signin']);
+        });
       },
       error: err => {
-        this.error = err.error?.message || 'Signup failed';
-        this.snackBar.open(this.error, 'Close', { duration: 3000 });
+        Swal.fire({
+          html: `
+            <div style="display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <span style="font-size: 1.5rem; color: #f44336; margin-right: 10px;">❌</span>
+              <span style="font-size: 1rem; color: #333;">
+                ${err.error.message || 'Invalid username or password!'}
+              </span>
+              </span>
+            </div>
+          `,
+          showConfirmButton: false,
+          background: '#fff',
+          width: '500px',
+          padding: '2em',
+          didOpen: (popup) => {
+            popup.addEventListener('click', () => Swal.close());
+          }
+        });
       }
     });
   }
