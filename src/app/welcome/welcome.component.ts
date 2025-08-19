@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { Flight } from '../models/flight.model';
+import { Booking } from '../models/booking.model';
 
 @Component({
   selector: 'app-welcome',
@@ -9,42 +11,63 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent {
   search = { source: '', destination: '', date: '' };
-  flights: any[] = [];
+  flights: Flight[] = [];
   message = '';
+
+  sortKey: keyof Flight | '' = ''; // ✅ restrict key to Flight properties
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(private api: ApiService, private router: Router) {}
 
-searchFlights() {
-  this.api.getFlights().subscribe((allFlights) => {
-    this.flights = allFlights.filter((f) => {
-      const matchesSource =
-        f.source.toLowerCase() === this.search.source.toLowerCase();
-      const matchesDestination =
-        f.destination.toLowerCase() === this.search.destination.toLowerCase();
-      let matchesDate = true;
-      if (this.search.date) {
-        const flightDate = new Date(f.date || f.startTime)
-          .toISOString()
-          .split("T")[0];
-        const searchDate = new Date(this.search.date)
-          .toISOString()
-          .split("T")[0];
-        matchesDate = flightDate === searchDate;
-      }
+  searchFlights() {
+    this.api.getFlights().subscribe((allFlights) => {
+      this.flights = allFlights.filter((f) => {
+        const matchesSource =
+          f.source.toLowerCase() === this.search.source.toLowerCase();
+        const matchesDestination =
+          f.destination.toLowerCase() === this.search.destination.toLowerCase();
 
-      return matchesSource && matchesDestination && matchesDate;
+        let matchesDate = true;
+        if (this.search.date) {
+          const flightDate = new Date(f.date).toISOString().split('T')[0];
+          const searchDate = new Date(this.search.date)
+            .toISOString()
+            .split('T')[0];
+          matchesDate = flightDate === searchDate;
+        }
+
+        return matchesSource && matchesDestination && matchesDate;
+      });
+
+      this.message = this.flights.length
+        ? ''
+        : 'No flights available for this route & date';
     });
+  }
 
-    this.message = this.flights.length
-      ? ""
-      : "No flights available for this route & date";
-  });
-}
+  bookFlight(flight: Flight) {
+    const userId = Number(localStorage.getItem('userId')); // ✅ get from localStorage
+    if (!userId) {
+      alert('Please login to book a flight.');
+      this.router.navigate(['/signin']);
+      return;
+    }
 
+    const booking: Booking = {
+      id: Date.now(),
+      userId,
+      planeId: flight.planeid.toString(),
+      planeName: flight.planename,
+      source: flight.source,
+      destination: flight.destination,
+      date: flight.date,
+      price: flight.price,
+      startTime: flight.startTime,
+      arrivalTime: flight.arrivalTime,
+      totalTime: flight.totalTime,
+    };
 
-
-  bookFlight(flight: any) {
-    this.api.bookFlight(flight).subscribe(() => {
+    this.api.bookFlight(booking).subscribe(() => {
       alert('Flight booked successfully!');
       this.router.navigate(['/profile']);
     });
@@ -54,10 +77,7 @@ searchFlights() {
     this.router.navigate(['/profile']);
   }
 
-  sortKey: string = '';
-  sortDirection: 'asc' | 'desc' = 'asc';
-
-  sortFlights(key: string) {
+  sortFlights(key: keyof Flight) {
     if (this.sortKey === key) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -75,7 +95,11 @@ searchFlights() {
           : valB.localeCompare(valA);
       }
 
-      return this.sortDirection === 'asc' ? valA - valB : valB - valA;
+      if (typeof valA === 'number' && typeof valB === 'number') {
+        return this.sortDirection === 'asc' ? valA - valB : valB - valA;
+      }
+
+      return 0;
     });
   }
 }

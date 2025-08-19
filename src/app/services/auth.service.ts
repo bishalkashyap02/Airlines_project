@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +12,21 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  signup(payload: { name: string; address: string; username: string; password: string; confirmPassword: string; }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/signup`, payload);
-  }
+ signup(payload: { name: string; address: string; username: string; password: string; confirmPassword: string; }): Observable<any> {
+  // Only send the required fields
+  const { name, address, username, password } = payload;
+  return this.http.post(`${this.apiUrl}/signup`, { name, address, username, password });
+}
 
-  signin(payload: { username: string; password: string; }): Observable<any> {
+
+  signin(payload: Pick<User, 'username' | 'password'>): Observable<any> {
     return this.http.post(`${this.apiUrl}/signin`, payload);
   }
 
-  saveToken(token: string, role: string) {
+  saveToken(token: string, role: string,  id: number) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
+     localStorage.setItem('userId',id.toString());
   }
 
   getToken(): string | null {
@@ -33,7 +38,6 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    // Basic check — you can extend to verify expiry via JWT decode
     return !!this.getToken();
   }
 

@@ -57,9 +57,20 @@ app.post('/api/signin', (req, res) => {
     const valid = bcrypt.compareSync(password, user.password);
     if (!valid) return res.status(400).send({ message: 'Invalid password' });
 
-    const token = jwt.sign({ id: user.id, username: user.username, role: user.role }, secretKey, { expiresIn: '5h' });
-    res.send({ token, role: user.role });
+    const token = jwt.sign(
+        { id: user.id, username: user.username, role: user.role },
+        secretKey,
+        { expiresIn: '5h' }
+    );
+
+    // ✅ Send back id also
+    res.send({
+        token,
+        role: user.role,
+        id: user.id
+    });
 });
+
 
 /* ---------------- FLIGHTS ---------------- */
 app.get('/api/flights', (req, res) => {
@@ -90,7 +101,7 @@ app.delete('/api/flights/:id', verifyToken, verifyAdmin, (req, res) => {
 /* ---------------- BOOKINGS ---------------- */
 app.post('/api/bookings', verifyToken, (req, res) => {
     let data = readData();
-    data.bookings.push({ id: Date.now(), userId: req.user.id,username: req.user.name, ...req.body });
+    data.bookings.push({ id: Date.now(), userId: req.user.id,username: req.user.username, ...req.body });
     writeData(data);
     res.send({ message: 'Booking successful' });
 });

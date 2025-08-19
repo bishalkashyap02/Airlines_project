@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Flight } from '../models/flight.model';
+import { Booking } from '../models/booking.model';
+import { User } from '../models/user.model';
 
 
 @Component({
@@ -17,22 +20,24 @@ export class AdminComponent implements OnInit {
   activeTab: string = 'users';
   tabIndex: number = 0;
 
-  users: any[] = [];
-  bookings: any[] = [];
-  flights: any[] = [];
-  filteredFlights: any[] = [];
+  users: User[] = [];
+bookings: Booking[] = [];
+flights: Flight[] = [];
+filteredFlights: Flight[] = [];
 
-  newFlight = {
-    planeid: '',
-    planename: '',
-    source: '',
-    destination: '',
-    date:'',
-    price: '',
-    startTime: '',
-    arrivalTime: '',
-    totalTime: ''
-  };
+
+newFlight: Flight = {
+  planeid: '',  // or planeid if that's your primary key
+  planename: '',
+  source: '',
+  destination: '',
+  date: '',
+  price: 0,
+  startTime: '',
+  arrivalTime: '',
+  totalTime: ''
+};
+
   editingFlightId: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -68,7 +73,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadUsers() {
-    this.http.get<any[]>('http://localhost:3000/api/users').subscribe({
+    this.http.get<User[]>('http://localhost:3000/api/users').subscribe({
       next: (data) => {
         this.users = data.filter(
           (user) => user.role?.toLowerCase() !== 'admin'
@@ -79,14 +84,14 @@ export class AdminComponent implements OnInit {
   }
 
   loadBookings() {
-    this.http.get<any[]>('http://localhost:3000/api/bookings').subscribe({
+    this.http.get<Booking[]>('http://localhost:3000/api/bookings').subscribe({
       next: (data) => (this.bookings = data),
       error: () => alert('Failed to load bookings'),
     });
   }
 
   loadFlights() {
-    this.http.get<any[]>('http://localhost:3000/api/flights').subscribe({
+    this.http.get<Flight[]>('http://localhost:3000/api/flights').subscribe({
       next: (data) => {
         this.flights = data;
         this.filteredFlights = [...data];
@@ -113,7 +118,7 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  editFlight(flight: any) {
+  editFlight(flight: Flight) {
     this.editingFlightId = flight.planeid;
     this.newFlight = { ...flight };
   }
@@ -160,18 +165,17 @@ export class AdminComponent implements OnInit {
   cancelEdit(form?: NgForm) {
     this.editingFlightId = null;
     this.newFlight = {
-      planeid: '',
-      planename: '',
-      source: '',
-      destination: '',
-      date:'',
-      price: '',
-      startTime: '',
-      arrivalTime: '',
-      totalTime: '',
+  planeid: '',
+  planename: '',
+  source: '',
+  destination: '',
+  date: '',
+  price: 0,   // must be 0 instead of ''
+  startTime: '',
+  arrivalTime: '',
+  totalTime: ''
+};
 
-
-    };
     if (form) {
       form.resetForm();
     }

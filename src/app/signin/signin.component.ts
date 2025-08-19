@@ -1,29 +1,38 @@
 import { Component } from '@angular/core';
-// import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/user.model';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  formData = { username: '', password: '' };
-  error = '';
+  // strictly typed form data (must match model)
+  formData: Pick<User, 'username' | 'password'> = {
+    username: '',
+    password: ''
+  };
+
+  error: string = '';
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
     this.auth.signin(this.formData).subscribe({
-      next: (res) => {
-        this.auth.saveToken(res.token, res.role);
+      next: (res: any) => {
+        this.auth.saveToken(res.token, res.role, res.id);
+
         if (res.role === 'admin') {
           this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/welcome']);
         }
       },
-      error: err => this.error = err.error.message || 'Signin failed'
+      error: (err) => {
+        this.error = err.error?.message || 'Signin failed';
+      }
     });
   }
 }
