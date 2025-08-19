@@ -16,12 +16,18 @@ export class SignupComponent {
     password: '',
     confirmPassword: ''
   };
+
   error = '';
-signupForm: any;
+  success = '';
+  passwordStrengthMessage = '';
+  passwordStrengthClass: string | string[] | Set<string> | { [klass: string]: any } | null | undefined;
 
   constructor(private auth: AuthService, private router: Router) {}
 
   onSubmit() {
+    this.error = '';
+    this.success = '';
+
     if (this.formData.password !== this.formData.confirmPassword) {
       this.error = 'Passwords do not match';
       return;
@@ -40,6 +46,17 @@ signupForm: any;
         }).then(() => {
           this.router.navigate(['/signin']);
         });
+
+        // Reset form
+        this.formData = {
+          name: '',
+          address: '',
+          username: '',
+          password: '',
+          confirmPassword: ''
+        };
+        this.passwordStrengthMessage = '';
+        this.passwordStrengthClass = '';
       },
       error: err => {
         Swal.fire({
@@ -48,7 +65,6 @@ signupForm: any;
               <span style="font-size: 1.5rem; color: #f44336; margin-right: 10px;">❌</span>
               <span style="font-size: 1rem; color: #333;">
                 ${err.error.message || 'Invalid username or password!'}
-              </span>
               </span>
             </div>
           `,
@@ -62,5 +78,25 @@ signupForm: any;
         });
       }
     });
+  }
+
+  checkPasswordStrength() {
+    const pwd = this.formData.password;
+    if (!pwd) {
+      this.passwordStrengthMessage = '';
+      this.passwordStrengthClass = '';
+      return;
+    }
+
+    if (pwd.length < 6) {
+      this.passwordStrengthMessage = 'Weak password';
+      this.passwordStrengthClass = 'text-danger';
+    } else if (/[A-Z]/.test(pwd) && /[0-9]/.test(pwd) && /[^A-Za-z0-9]/.test(pwd)) {
+      this.passwordStrengthMessage = 'Strong password';
+      this.passwordStrengthClass = 'text-success';
+    } else {
+      this.passwordStrengthMessage = 'Moderate password';
+      this.passwordStrengthClass = 'text-warning';
+    }
   }
 }
