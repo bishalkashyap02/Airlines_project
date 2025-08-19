@@ -25,8 +25,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import{MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -62,6 +62,7 @@ import{MatSnackBarModule} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
+    MatPaginatorModule,
   ],
   providers: [
     {

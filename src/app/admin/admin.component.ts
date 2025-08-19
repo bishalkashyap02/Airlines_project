@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Flight } from '../models/flight.model';
 import { Booking } from '../models/booking.model';
 import { User } from '../models/user.model';
-
 
 @Component({
   selector: 'app-admin',
@@ -21,25 +22,25 @@ export class AdminComponent implements OnInit {
   tabIndex: number = 0;
 
   users: User[] = [];
-bookings: Booking[] = [];
-flights: Flight[] = [];
-filteredFlights: Flight[] = [];
+  bookings: Booking[] = [];
+  flights: Flight[] = [];
+  filteredFlights: Flight[] = [];
+  datasource = new MatTableDataSource<any>([]);
 
-
-newFlight: Flight = {
-  planeid: '',  // or planeid if that's your primary key
-  planename: '',
-  source: '',
-  destination: '',
-  date: '',
-  price: 0,
-  startTime: '',
-  arrivalTime: '',
-  totalTime: ''
-};
+  newFlight: Flight = {
+    planeid: '',
+    planename: '',
+    source: '',
+    destination: '',
+    date: '',
+    price: 0,
+    startTime: '',
+    arrivalTime: '',
+    totalTime: '',
+  };
 
   editingFlightId: string | null = null;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
@@ -48,7 +49,9 @@ newFlight: Flight = {
       this.setTab('users');
     }
   }
-
+  ngAfterViewInit() {
+    this.datasource.paginator = this.paginator;
+  }
   login() {
     this.http
       .post<{ token: string }>('http://localhost:3000/api/admin/login', {
@@ -95,6 +98,8 @@ newFlight: Flight = {
       next: (data) => {
         this.flights = data;
         this.filteredFlights = [...data];
+        this.datasource = new MatTableDataSource<any>(this.flights);
+        this.datasource.paginator = this.paginator;
       },
       error: () => alert('Failed to load flights'),
     });
@@ -102,6 +107,13 @@ newFlight: Flight = {
 
   addFlight(form: NgForm) {
     if (!this.token) return;
+
+    const selectedDate = new Date(this.newFlight.date);
+    const year = selectedDate.getFullYear();
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = selectedDate.getDate().toString().padStart(2, '0');
+    this.newFlight.date = `${year}-${month}-${day}`;
+
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.token}`
@@ -125,6 +137,13 @@ newFlight: Flight = {
 
   updateFlight(form: NgForm) {
     if (!this.token || !this.editingFlightId) return;
+
+    const selectedDate = new Date(this.newFlight.date);
+    const year = selectedDate.getFullYear();
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = selectedDate.getDate().toString().padStart(2, '0');
+    this.newFlight.date = `${year}-${month}-${day}`;
+
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.token}`
@@ -165,16 +184,16 @@ newFlight: Flight = {
   cancelEdit(form?: NgForm) {
     this.editingFlightId = null;
     this.newFlight = {
-  planeid: '',
-  planename: '',
-  source: '',
-  destination: '',
-  date: '',
-  price: 0,   // must be 0 instead of ''
-  startTime: '',
-  arrivalTime: '',
-  totalTime: ''
-};
+      planeid: '',
+      planename: '',
+      source: '',
+      destination: '',
+      date: '',
+      price: 0, // must be 0 instead of ''
+      startTime: '',
+      arrivalTime: '',
+      totalTime: '',
+    };
 
     if (form) {
       form.resetForm();

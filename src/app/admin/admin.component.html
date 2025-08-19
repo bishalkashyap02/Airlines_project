@@ -333,7 +333,7 @@
           <!-- Flight Table -->
           <table
             mat-table
-            [dataSource]="flights"
+            [dataSource]="datasource"
             class="mat-elevation-z8 full-width-table"
             matSort
           >
@@ -438,6 +438,12 @@
               "
             ></tr>
           </table>
+          <mat-paginator
+            [pageSize]="1"
+            [pageSizeOptions]="[1, 2, 3]"
+            aria-label="select Page"
+            showFirstLastButtons
+          ></mat-paginator>
         </section>
       </mat-tab>
     </mat-tab-group>
