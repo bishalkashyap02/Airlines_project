@@ -6,10 +6,10 @@ import { Flight } from '../models/flight.model';
 import { Booking } from '../models/booking.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient) {}
 
@@ -41,5 +41,9 @@ export class ApiService {
   // Users (admin)
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
+  }
+  // In api.service.ts
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
 }

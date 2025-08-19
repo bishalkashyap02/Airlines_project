@@ -1,0 +1,88 @@
+<mat-horizontal-stepper linear>
+  <!-- Details Step -->
+  <mat-step [stepControl]="detailsForm">
+    <form [formGroup]="detailsForm">
+      <ng-template matStepLabel>Details</ng-template>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Gender</mat-label>
+        <input matInput formControlName="gender" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" formControlName="age" />
+      </mat-form-field>
+
+      <mat-slide-toggle color="primary" formControlName="autoFill" (change)="toggleAutoFill()">
+        Auto-fill from User
+      </mat-slide-toggle>
+
+      <div>
+        <button mat-button matStepperNext [disabled]="!detailsForm.valid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Security Step -->
+  <mat-step [stepControl]="securityForm">
+    <form [formGroup]="securityForm">
+      <ng-template matStepLabel>Security</ng-template>
+
+      <mat-checkbox formControlName="luggage">
+        Luggage weight less than 15kg
+      </mat-checkbox>
+      <br />
+      <mat-checkbox formControlName="drugs">
+        Not taking drugs
+      </mat-checkbox>
+      <br />
+      <mat-checkbox formControlName="knife">
+        Not taking knife
+      </mat-checkbox>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <!-- Payment Step -->
+  <mat-step>
+    <ng-template matStepLabel>Payment</ng-template>
+
+    <h3>Review Your Booking</h3>
+    <p><strong>Name:</strong> {{ detailsForm.value.name }}</p>
+    <p><strong>Gender:</strong> {{ detailsForm.value.gender }}</p>
+    <p><strong>Age:</strong> {{ detailsForm.value.age }}</p>
+
+    <p><strong>Luggage:</strong> {{ securityForm.value.luggage ? 'Yes ✅' : 'No ❌' }}</p>
+    <p><strong>Drugs:</strong> {{ securityForm.value.drugs ? 'Yes ✅' : 'No ❌' }}</p>
+    <p><strong>Knife:</strong> {{ securityForm.value.knife ? 'Yes ✅' : 'No ❌' }}</p>
+
+    <!-- Show flight details if available -->
+    <div *ngIf="selectedFlight as flight">
+      <h3>Selected Flight</h3>
+      <p><strong>Plane:</strong> {{ flight.planename }}</p>
+      <p><strong>From:</strong> {{ flight.source }} → {{ flight.destination }}</p>
+      <p><strong>Date:</strong> {{ flight.date }}</p>
+      <p><strong>Time:</strong> {{ flight.startTime }} - {{ flight.arrivalTime }} ({{ flight.totalTime }})</p>
+      <p><strong>Price:</strong> ₹{{ flight.price }}</p>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="bookFlight(selectedFlight); pay()"
+      [disabled]="!detailsForm.valid || !securityForm.valid"
+    >
+      Pay & Book
+    </button>
+  </mat-step>
+</mat-horizontal-stepper>

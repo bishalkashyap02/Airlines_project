@@ -23,6 +23,14 @@
       "username": "Abc",
       "password": "$2b$08$eHMidQQs1ZPvkEUuwASPSeGR8.cX8Ym7dbn/MVSfOhXvwOCKDU3rS",
       "role": "user"
+    },
+    {
+      "id": 1755623468348,
+      "name": "Chinu",
+      "address": "Chikiti",
+      "username": "chinu",
+      "password": "$2b$08$TA5DjVo6zqZxsFpS.Tywz.51KvZA.2C/fqbGWaObMAjaERNazC.Sq",
+      "role": "user"
     }
   ],
   "planedetails": [
@@ -65,7 +73,7 @@
       "source": "Chicago",
       "destination": "Toronto",
       "date": "2025-09-22",
-      "price": 3034,
+      "price": 3036,
       "startTime": "14:15",
       "arrivalTime": "16:00",
       "totalTime": "1h 45m"
@@ -84,42 +92,32 @@
   ],
   "bookings": [
     {
-      "id": 1755498671919,
-      "userId": 1754224917427,
-      "planeid": 302,
-      "planename": "Boeing 737 MAX",
+      "id": 1755615714103,
+      "userId": 1754809421029,
+      "username": "Abc",
+      "planeId": "302",
+      "planeName": "Boeing 777",
       "source": "New York",
       "destination": "London",
-      "price": 680,
-      "startTime": "09:00",
-      "arrivalTime": "21:00",
-      "totalTime": "7h"
+      "date": "2025-09-18",
+      "price": 5034,
+      "startTime": "22:30",
+      "arrivalTime": "10:00",
+      "totalTime": "7h 30m"
     },
     {
-      "id": 1755533632429,
-      "userId": 1754809035720,
-      "planeid": 304,
-      "planename": "Boeing 737 MAX",
-      "source": "Chicago",
-      "destination": "Toronto",
-      "date": "2025-09-22",
-      "price": 3034,
-      "startTime": "14:15",
-      "arrivalTime": "16:00",
-      "totalTime": "1h 45m"
-    },
-    {
-      "id": 1755533949994,
-      "userId": 1754809035720,
-      "planeid": "305",
-      "planename": "AirBus",
-      "source": "London",
-      "destination": "New York",
-      "date": "2025-08-28T18:30:00.000Z",
-      "price": 2034,
-      "startTime": "9:25 AM",
-      "arrivalTime": "3:00 PM",
-      "totalTime": "5h 35m"
+      "id": 1755623585357,
+      "userId": 1755623468348,
+      "username": "chinu",
+      "planeId": "301",
+      "planeName": "Embraer E195",
+      "source": "Los Angeles",
+      "destination": "Tokyo",
+      "date": "2025-09-15",
+      "price": 6034,
+      "startTime": "10:00",
+      "arrivalTime": "15:00",
+      "totalTime": "14h"
     }
   ]
 }

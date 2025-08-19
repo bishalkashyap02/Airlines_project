@@ -8,14 +8,14 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient, private router: Router) {}
 
  signup(payload: { name: string; address: string; username: string; password: string; confirmPassword: string; }): Observable<any> {
   // Only send the required fields
-  const { name, address, username, password } = payload;
-  return this.http.post(`${this.apiUrl}/signup`, { name, address, username, password });
+  //  const { name, address, username, password } = payload;
+  return this.http.post(`${this.apiUrl}/signup`, payload);
 }
 
 

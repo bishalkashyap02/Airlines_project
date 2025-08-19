@@ -46,31 +46,13 @@ export class WelcomeComponent {
   }
 
   bookFlight(flight: Flight) {
-    const userId = Number(localStorage.getItem('userId')); // ✅ get from localStorage
+    const userId = Number(localStorage.getItem('userId'));
     if (!userId) {
       alert('Please login to book a flight.');
       this.router.navigate(['/signin']);
       return;
     }
-
-    const booking: Booking = {
-      id: Date.now(),
-      userId,
-      planeId: flight.planeid.toString(),
-      planeName: flight.planename,
-      source: flight.source,
-      destination: flight.destination,
-      date: flight.date,
-      price: flight.price,
-      startTime: flight.startTime,
-      arrivalTime: flight.arrivalTime,
-      totalTime: flight.totalTime,
-    };
-
-    this.api.bookFlight(booking).subscribe(() => {
-      alert('Flight booked successfully!');
-      this.router.navigate(['/profile']);
-    });
+    this.router.navigate(['/booking'] ,{ state: { flight } });
   }
 
   goToProfile() {

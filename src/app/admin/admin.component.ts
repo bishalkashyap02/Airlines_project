@@ -51,7 +51,7 @@ newFlight: Flight = {
 
   login() {
     this.http
-      .post<{ token: string }>('http://localhost:3000/api/admin/login', {
+      .post<{ token: string }>('http://localhost/api/admin/login', {
         username: this.username,
         password: this.password,
       })
@@ -73,7 +73,7 @@ newFlight: Flight = {
   }
 
   loadUsers() {
-    this.http.get<User[]>('http://localhost:3000/api/users').subscribe({
+    this.http.get<User[]>('http://localhost/api/users').subscribe({
       next: (data) => {
         this.users = data.filter(
           (user) => user.role?.toLowerCase() !== 'admin'
@@ -84,14 +84,14 @@ newFlight: Flight = {
   }
 
   loadBookings() {
-    this.http.get<Booking[]>('http://localhost:3000/api/bookings').subscribe({
+    this.http.get<Booking[]>('http://localhost/api/bookings').subscribe({
       next: (data) => (this.bookings = data),
       error: () => alert('Failed to load bookings'),
     });
   }
 
   loadFlights() {
-    this.http.get<Flight[]>('http://localhost:3000/api/flights').subscribe({
+    this.http.get<Flight[]>('http://localhost/api/flights').subscribe({
       next: (data) => {
         this.flights = data;
         this.filteredFlights = [...data];
@@ -107,7 +107,7 @@ newFlight: Flight = {
       `Bearer ${this.token}`
     );
     this.http
-      .post('http://localhost:3000/api/flights', this.newFlight, { headers })
+      .post('http://localhost/api/flights', this.newFlight, { headers })
       .subscribe({
         next: () => {
           this.loadFlights();
@@ -131,7 +131,7 @@ newFlight: Flight = {
     );
     this.http
       .put(
-        `http://localhost:3000/api/flights/${this.editingFlightId}`,
+        `http://localhost/api/flights/${this.editingFlightId}`,
         this.newFlight,
         { headers }
       )
@@ -152,7 +152,7 @@ newFlight: Flight = {
       `Bearer ${this.token}`
     );
     this.http
-      .delete(`http://localhost:3000/api/flights/${id}`, { headers })
+      .delete(`http://localhost/api/flights/${id}`, { headers })
       .subscribe({
         next: () => {
           this.loadFlights();
