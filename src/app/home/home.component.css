@@ -1,0 +1,20 @@
+.floating-feedback-btn {
+  position: fixed;
+  right: 0;                 /* stick to right edge */
+  top: 50%;                 /* move to middle of screen */
+  transform: translateY(-50%); /* perfectly center vertically */
+  background-color: #ff6600;
+  color: white;
+  padding: 25px 10px;
+  border-radius: 8px 0 0 8px; /* rounded left edges */
+  font-weight: bold;
+  text-decoration: none;
+  z-index: 1000;
+  writing-mode: vertical-rl;  /* make text vertical */
+  text-orientation: mixed;
+  transition: background-color 0.3s ease;
+}
+
+.floating-feedback-btn:hover {
+  background-color: #e65c00;
+}
