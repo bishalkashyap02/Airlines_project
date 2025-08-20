@@ -1,0 +1,10 @@
+input.ng-dirty.ng-invalid,
+input.ng-touched.ng-invalid {
+  border: 2px solid #ff0000;
+}
+input.ng-dirty.ng-valid {
+  border: 2px solid #6bc502;
+}
+.text-danger {
+  font-size: 0.9rem;
+}
