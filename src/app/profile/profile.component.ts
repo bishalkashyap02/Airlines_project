@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 import { Booking } from '../models/booking.model';
 @Component({
-  selector: 'app-profile', // or your actual selector
+  selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
   bookings: Booking[] = [];
@@ -24,12 +24,12 @@ export class ProfileComponent implements OnInit {
 
   cancelBooking(id: number) {
     this.api.cancelBooking(id).subscribe(() => {
-      this.bookings = this.bookings.filter(b => b.id !== id);
+      this.bookings = this.bookings.filter((b) => b.id !== id);
     });
   }
 
   logout() {
-    localStorage.removeItem('token'); // remove stored JWT
-    this.router.navigate(['/login']); // redirect to login page
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 }

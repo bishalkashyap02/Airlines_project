@@ -19,16 +19,23 @@
         <input matInput type="number" formControlName="age" />
       </mat-form-field>
 
-      <mat-slide-toggle color="primary" formControlName="autoFill" (change)="toggleAutoFill()">
+      <mat-slide-toggle
+        color="primary"
+        formControlName="autoFill"
+        (change)="toggleAutoFill()"
+      >
         Auto-fill from User
       </mat-slide-toggle>
 
-      <div>
-        <button mat-button matStepperNext [disabled]="!detailsForm.valid">Next</button>
+      <div class="step-actions">
+        <button mat-button matStepperNext [disabled]="!detailsForm.valid">
+          Next
+        </button>
       </div>
     </form>
   </mat-step>
 
+  <!-- Security Step -->
   <!-- Security Step -->
   <mat-step [stepControl]="securityForm">
     <form [formGroup]="securityForm">
@@ -38,15 +45,11 @@
         Luggage weight less than 15kg
       </mat-checkbox>
       <br />
-      <mat-checkbox formControlName="drugs">
-        Not taking drugs
-      </mat-checkbox>
+      <mat-checkbox formControlName="drugs"> Not taking drugs </mat-checkbox>
       <br />
-      <mat-checkbox formControlName="knife">
-        Not taking knife
-      </mat-checkbox>
+      <mat-checkbox formControlName="knife"> Not taking knife </mat-checkbox>
 
-      <div>
+      <div class="step-actions1">
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
@@ -62,27 +65,43 @@
     <p><strong>Gender:</strong> {{ detailsForm.value.gender }}</p>
     <p><strong>Age:</strong> {{ detailsForm.value.age }}</p>
 
-    <p><strong>Luggage:</strong> {{ securityForm.value.luggage ? 'Yes ✅' : 'No ❌' }}</p>
-    <p><strong>Drugs:</strong> {{ securityForm.value.drugs ? 'Yes ✅' : 'No ❌' }}</p>
-    <p><strong>Knife:</strong> {{ securityForm.value.knife ? 'Yes ✅' : 'No ❌' }}</p>
+    <p>
+      <strong>Luggage:</strong>
+      {{ securityForm.value.luggage ? "Yes ✅" : "No ❌" }}
+    </p>
+    <p>
+      <strong>Drugs:</strong>
+      {{ securityForm.value.drugs ? "Yes ✅" : "No ❌" }}
+    </p>
+    <p>
+      <strong>Knife:</strong>
+      {{ securityForm.value.knife ? "Yes ✅" : "No ❌" }}
+    </p>
 
     <!-- Show flight details if available -->
     <div *ngIf="selectedFlight as flight">
       <h3>Selected Flight</h3>
       <p><strong>Plane:</strong> {{ flight.planename }}</p>
-      <p><strong>From:</strong> {{ flight.source }} → {{ flight.destination }}</p>
+      <p>
+        <strong>From:</strong> {{ flight.source }} → {{ flight.destination }}
+      </p>
       <p><strong>Date:</strong> {{ flight.date }}</p>
-      <p><strong>Time:</strong> {{ flight.startTime }} - {{ flight.arrivalTime }} ({{ flight.totalTime }})</p>
+      <p>
+        <strong>Time:</strong> {{ flight.startTime }} -
+        {{ flight.arrivalTime }} ({{ flight.totalTime }})
+      </p>
       <p><strong>Price:</strong> ₹{{ flight.price }}</p>
     </div>
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="bookFlight(selectedFlight); pay()"
-      [disabled]="!detailsForm.valid || !securityForm.valid"
-    >
-      Pay & Book
-    </button>
+    <div class="step-actions3">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="bookFlight(selectedFlight); pay()"
+        [disabled]="!detailsForm.valid || !securityForm.valid"
+      >
+        Pay & Book
+      </button>
+    </div>
   </mat-step>
 </mat-horizontal-stepper>

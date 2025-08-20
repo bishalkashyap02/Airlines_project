@@ -1,13 +1,13 @@
 /* Announcement Bar - Sticky and Blue-Compatible Color */
 .announcement-bar {
-  background-color: #276183; /* Deep Navy Blue-friendly shade */
-  color: white; /* Golden yellow for contrast */
+  background-color: #276183;
+  color: white;
   font-weight: bold;
   font-size: 14px;
   padding: 5px 5px;
   overflow: hidden;
-  position: sticky; /* Makes it stay at the top */
-  top: 0; /* Stick to very top of page */
+  position: sticky;
+  top: 0;
   z-index: 1050;
   white-space: nowrap;
 }
@@ -28,14 +28,12 @@
   }
 }
 
-/* Navbar Styling - Adjusted for new color scheme */
 .custom-navbar {
-  background-color: #17435e !important; /* Muted blue */
+  background-color: #17435e !important;
   box-shadow: none;
-  margin-top: 30px; /* Sticks just under announcement bar automatically */
+  margin-top: 30px;
 }
 
-/* White Buttons */
 .btn-white {
   background-color: white;
   color: black !important;
@@ -54,7 +52,7 @@
 
 /* Brand Text */
 .brand-text {
-  color: white !important; /* Matches announcement bar text */
+  color: white !important;
   font-weight: bold;
   font-size: 1.3rem;
 }
@@ -63,6 +61,5 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1050; /* above most elements */
+  z-index: 1050;
 }
-

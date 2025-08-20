@@ -12,21 +12,24 @@ import { BookingComponent } from './booking/booking.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent }, // ✅ Default Home route
+  { path: '', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
   { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [AuthGuard] },
-      { path: 'feedback', component: FeedbackComponent },  // ✅ Feedback page
+  { path: 'feedback', component: FeedbackComponent },
 
-  { path: '**', redirectTo: '' } // ✅ Wildcard redirects to Home
-  
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

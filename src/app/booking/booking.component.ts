@@ -12,7 +12,7 @@ import { ApiService } from '../services/api.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.css']
+  styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent {
   detailsForm: FormGroup;
@@ -30,7 +30,7 @@ export class BookingComponent {
     private router: Router,
     private api: ApiService
   ) {
-    // ✅ Retrieve selected flight from router state
+    //  Retrieve selected flight from router state
     const nav = this.router.getCurrentNavigation();
     this.selectedFlight = nav?.extras?.state?.['flight'] || null;
 
@@ -38,19 +38,19 @@ export class BookingComponent {
       name: ['', Validators.required],
       gender: ['', Validators.required],
       age: ['', Validators.required],
-      autoFill: [false]
+      autoFill: [false],
     });
 
     this.securityForm = this.fb.group({
       luggage: [false, Validators.requiredTrue],
       drugs: [false, Validators.requiredTrue],
-      knife: [false, Validators.requiredTrue]
+      knife: [false, Validators.requiredTrue],
     });
 
     this.paymentForm = this.fb.group({});
   }
 
-  /** 🔹 Toggle autofill from backend using userId */
+  /**  Toggle autofill from backend using userId */
   toggleAutoFill() {
     const isAutoFill = this.detailsForm.value.autoFill;
     const userId = Number(localStorage.getItem('userId'));
@@ -60,20 +60,20 @@ export class BookingComponent {
         next: (user) => {
           this.currentUser = user;
           this.detailsForm.patchValue({
-            name: user.name
+            name: user.name,
           });
         },
         error: () => {
           alert('Failed to fetch user info');
           this.detailsForm.patchValue({ name: '' });
-        }
+        },
       });
     } else {
       this.detailsForm.patchValue({ name: '' });
     }
   }
 
-  /** 🔹 Book selected flight */
+  /**  Book selected flight */
   bookFlight(selectedFlight: any) {
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) {
@@ -102,17 +102,19 @@ export class BookingComponent {
     };
 
     this.api.bookFlight(booking).subscribe(() => {
-      this.snackBar.open('Flight booked successfully!', 'Close', { duration: 3000 });
-      this.router.navigate(['/profile']); // ✅ redirect to profile after booking
+      this.snackBar.open('Flight booked successfully!', 'Close', {
+        duration: 3000,
+      });
+      this.router.navigate(['/profile']); // redirect to profile after booking
     });
   }
 
-  /** 🔹 Navigate to profile */
+  /**  Navigate to profile */
   goToProfile() {
     this.router.navigate(['/profile']);
   }
 
-  /** 🔹 Pay and finalize booking */
+  /**  Pay and finalize booking */
   pay() {
     if (!this.detailsForm.valid || !this.securityForm.valid) {
       alert('Please complete all steps before payment.');

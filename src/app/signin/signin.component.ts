@@ -6,13 +6,12 @@ import { User } from '../models/user.model';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css'],
 })
 export class SigninComponent {
-  // strictly typed form data (must match model)
   formData: Pick<User, 'username' | 'password'> = {
     username: '',
-    password: ''
+    password: '',
   };
 
   error: string = '';
@@ -32,7 +31,7 @@ export class SigninComponent {
       },
       error: (err) => {
         this.error = err.error?.message || 'Signin failed';
-      }
+      },
     });
   }
 }

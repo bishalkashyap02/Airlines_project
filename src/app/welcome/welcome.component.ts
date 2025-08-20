@@ -14,7 +14,7 @@ export class WelcomeComponent {
   flights: Flight[] = [];
   message = '';
 
-  sortKey: keyof Flight | '' = ''; // ✅ restrict key to Flight properties
+  sortKey: keyof Flight | '' = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(private api: ApiService, private router: Router) {}
@@ -52,7 +52,7 @@ export class WelcomeComponent {
       this.router.navigate(['/signin']);
       return;
     }
-    this.router.navigate(['/booking'] ,{ state: { flight } });
+    this.router.navigate(['/booking'], { state: { flight } });
   }
 
   goToProfile() {
