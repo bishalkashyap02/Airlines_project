@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from '../services/api.service';
-import { Booking } from '../models/booking.model';
+import { ApiService } from '../../../services/api.service';
+import { Booking } from '../../../models/booking.model';
 @Component({
   selector: 'app-profile', // or your actual selector
   templateUrl: './profile.component.html',

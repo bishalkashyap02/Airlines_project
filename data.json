@@ -31,6 +31,14 @@
       "username": "chinu",
       "password": "$2b$08$TA5DjVo6zqZxsFpS.Tywz.51KvZA.2C/fqbGWaObMAjaERNazC.Sq",
       "role": "user"
+    },
+    {
+      "id": 1755746288559,
+      "name": "Chinu1",
+      "address": "Chikiti",
+      "username": "chinu1",
+      "password": "$2b$08$45soG6JxTJhPSG9FSNsZA.L8Frjc5dl/nuf4IuN3bSrB/1ubCJ/KC",
+      "role": "user"
     }
   ],
   "planedetails": [

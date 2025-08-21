@@ -3,11 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-import { User } from '../models/user.model';
-import { Booking } from '../models/booking.model';
-import { Flight } from '../models/flight.model';
-import { ApiService } from '../services/api.service';
+import { User } from '../../../models/user.model';
+import { Booking } from '../../../models/booking.model';
+import { Flight } from '../../../models/flight.model';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-booking',

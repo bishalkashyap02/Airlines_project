@@ -15,17 +15,16 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AdminComponent } from './admin/admin.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { ProfileComponent } from './profile/profile.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { HomeComponent } from './views/home/home/home.component';
+import { AdminComponent } from './views/admin/admin.component';
+import { SigninComponent } from './views/home/signin/signin.component';
+import { SignupComponent } from './views/home/signup/signup.component';
+import { WelcomeComponent } from './views/home/welcome/welcome.component';
+import { ProfileComponent } from './views/home/profile/profile.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BookingComponent } from './booking/booking.component';
+import { BookingComponent } from './views/home/booking/booking.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -35,12 +34,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   declarations: [
     AppComponent,
     HomeComponent,
-    AdminComponent,
     SigninComponent,
     SignupComponent,
     WelcomeComponent,
     ProfileComponent,
-    NavbarComponent,
     BookingComponent,
   ],
   imports: [

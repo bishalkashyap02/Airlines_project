@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url('./app/assets/plane.jpg') no-repeat center center fixed;
+  background: url('./app/views/home/assets/plane.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: Arial, sans-serif;
   min-height: 100vh;

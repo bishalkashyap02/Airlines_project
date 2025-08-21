@@ -1,0 +1,109 @@
+module.exports = function () {
+  return {
+    "users": [
+      {
+        "id": 1754806858284,
+        "name": "Sipra",
+        "address": "Berhampur",
+        "username": "Sipra",
+        "password": "$2b$08$Qz7JnpVWe1wRd/Nt3jv6B.KxFA1fRHp.FaHVwIvMJB2I47VEZxFje",
+        "role": "admin"
+      },
+      {
+        "id": 1754809035720,
+        "name": "Dhanada",
+        "address": "Chikiti",
+        "username": "Dhanada",
+        "password": "$2b$08$Syz6VVdn0ePSSro00eLd8e.oJmbVr3OjQaRnyQnpeWUfTkK9Cwjlu",
+        "role": "user"
+      }
+    ],
+    "planedetails": [
+      {
+        "planeid": 301,
+        "planename": "Embraer E195",
+        "source": "Los Angeles",
+        "destination": "Tokyo",
+        "date": "2025-09-15",
+        "price": 6034,
+        "startTime": "10:00",
+        "arrivalTime": "15:00",
+        "totalTime": "14h"
+      },
+      {
+        "planeid": 302,
+        "planename": "Boeing 777",
+        "source": "New York",
+        "destination": "London",
+        "date": "2025-09-18",
+        "price": 5034,
+        "startTime": "22:30",
+        "arrivalTime": "10:00",
+        "totalTime": "7h 30m"
+      },
+      {
+        "planeid": 303,
+        "planename": "Airbus A380",
+        "source": "Dubai",
+        "destination": "Sydney",
+        "date": "2025-09-20",
+        "price": 4034,
+        "startTime": "08:45",
+        "arrivalTime": "22:00",
+        "totalTime": "13h 15m"
+      },
+      {
+        "planeid": 304,
+        "planename": "Boeing 737 MAX",
+        "source": "Chicago",
+        "destination": "Toronto",
+        "date": "2025-09-22",
+        "price": 3036,
+        "startTime": "14:15",
+        "arrivalTime": "16:00",
+        "totalTime": "1h 45m"
+      },
+      {
+        "planeid": 305,
+        "planename": "AirBus",
+        "source": "London",
+        "destination": "New York",
+        "date": "2025-08-28T18:30:00.000Z",
+        "price": 2034,
+        "startTime": "9:25 AM",
+        "arrivalTime": "3:00 PM",
+        "totalTime": "5h 35m"
+      }
+    ],
+    "bookings": [
+      {
+        "id": 1755615714103,
+        "userId": 1754809421029,
+        "username": "Abc",
+        "planeId": "302",
+        "planeName": "Boeing 777",
+        "source": "New York",
+        "destination": "London",
+        "date": "2025-09-18",
+        "price": 5034,
+        "startTime": "22:30",
+        "arrivalTime": "10:00",
+        "totalTime": "7h 30m"
+      },
+      {
+        "id": 1755623585357,
+        "userId": 1755623468348,
+        "username": "chinu",
+        "planeId": "301",
+        "planeName": "Embraer E195",
+        "source": "Los Angeles",
+        "destination": "Tokyo",
+        "date": "2025-09-15",
+        "price": 6034,
+        "startTime": "10:00",
+        "arrivalTime": "15:00",
+        "totalTime": "14h"
+      }
+    ]
+  };
+};
