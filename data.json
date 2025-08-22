@@ -96,6 +96,25 @@
       "startTime": "9:25 AM",
       "arrivalTime": "3:00 PM",
       "totalTime": "5h 35m"
+    },
+    {
+      "planeid": "308",
+      "planename": "Airbus 370",
+      "source": "London",
+      "destination": "New York",
+      "date": "2025-08-29T18:30:00.000Z",
+      "returnDate": "2025-08-28T18:30:00.000Z",
+      "price": 5467,
+      "startTime": "4:00 AM",
+      "arrivalTime": "5:00 PM",
+      "totalTime": "13h 0m",
+      "isRoundTrip": true,
+      "classType": {
+        "economyEnabled": true,
+        "economyPrice": 5467,
+        "businessEnabled": true,
+        "businessPrice": 6548
+      }
     }
   ],
   "bookings": [
@@ -126,6 +145,20 @@
       "startTime": "10:00",
       "arrivalTime": "15:00",
       "totalTime": "14h"
+    },
+    {
+      "id": 1755829532590,
+      "userId": 1754809035720,
+      "username": "Dhanada",
+      "planeId": "308",
+      "planeName": "Airbus 370",
+      "source": "London",
+      "destination": "New York",
+      "date": "2025-08-29T18:30:00.000Z",
+      "price": 5467,
+      "startTime": "4:00 AM",
+      "arrivalTime": "5:00 PM",
+      "totalTime": "13h 0m"
     }
   ]
 }

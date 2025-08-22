@@ -11,21 +11,23 @@ import { AuthGuard } from './services/auth.guard';
 import { BookingComponent } from './views/home/booking/booking.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent ,pathMatch: 'full' },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
-   {
-    path: 'admin',
-    loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
-  },
+  // {
+  //   path: 'admin',
+  //   loadChildren: () =>
+  //     import('./views/admin/admin.module').then((m) => m.AdminModule), canActivate: [AdminGuard]
+  // },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: '' } 
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

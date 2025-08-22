@@ -56,11 +56,11 @@ app.post('/api/flights', verifyToken, verifyAdmin, (req, res) => {
     res.send({ message: 'Flight added' });
 });
 app.put('/api/flights/:id', verifyToken, verifyAdmin, (req, res) => {
-    db.get('planedetails').find({ planeid: Number(req.params.id) }).assign(req.body).write();
+    db.get('planedetails').find({ planeid: req.params.id }).assign(req.body).write();
     res.send({ message: 'Flight updated' });
 });
 app.delete('/api/flights/:id', verifyToken, verifyAdmin, (req, res) => {
-    db.get('planedetails').remove({ planeid: Number(req.params.id) }).write();
+    db.get('planedetails').remove({ planeid: req.params.id }).write();
     res.send({ message: 'Flight deleted' });
 });
 

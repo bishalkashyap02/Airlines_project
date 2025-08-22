@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
   canActivate(): boolean {
     const role = this.auth.getRole();
     if (role !== 'admin') {
-      this.router.navigate(['/welcome']); // or '/signin'
+      this.router.navigate(['/signin']); // or '/signin'
       return false;
     }
     return true;

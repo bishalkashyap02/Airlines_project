@@ -10,11 +10,18 @@ import { Booking } from '../../../models/booking.model';
   styleUrls: ['./welcome.component.css'],
 })
 export class WelcomeComponent {
-  search = { source: '', destination: '', date: '' };
+  search = {
+    source: '',
+    destination: '',
+    date: '',
+    classType: '',
+    isRoundTrip: false,
+    returnDate: '',
+  };
   flights: Flight[] = [];
   message = '';
 
-  sortKey: keyof Flight | '' = ''; // ✅ restrict key to Flight properties
+  sortKey: keyof Flight | '' = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(private api: ApiService, private router: Router) {}
@@ -24,9 +31,11 @@ export class WelcomeComponent {
       this.flights = allFlights.filter((f) => {
         const matchesSource =
           f.source.toLowerCase() === this.search.source.toLowerCase();
+
         const matchesDestination =
           f.destination.toLowerCase() === this.search.destination.toLowerCase();
 
+        // ✅ Date filter
         let matchesDate = true;
         if (this.search.date) {
           const flightDate = new Date(f.date).toISOString().split('T')[0];
@@ -35,13 +44,45 @@ export class WelcomeComponent {
             .split('T')[0];
           matchesDate = flightDate === searchDate;
         }
+        let matchesClassType = true;
+        if (this.search.classType) {
+          if (!f.classType) {
+            matchesClassType = false;
+          } else if (this.search.classType === 'Economy') {
+            matchesClassType = !!f.classType.economyEnabled;
+          } else if (this.search.classType === 'Business') {
+            matchesClassType = !!f.classType.businessEnabled;
+          }
+        }
 
-        return matchesSource && matchesDestination && matchesDate;
+        // ✅ Round trip filter
+        const isRoundTrip = this.search.isRoundTrip;
+        let matchesReturnDate = true;
+
+        if (isRoundTrip && this.search.returnDate && f.returnDate) {
+          const returnFlightDate = new Date(f.returnDate)
+            .toISOString()
+            .split('T')[0];
+          const searchReturnDate = new Date(this.search.returnDate)
+            .toISOString()
+            .split('T')[0];
+          matchesReturnDate = returnFlightDate === searchReturnDate;
+        } else if (isRoundTrip && this.search.returnDate && !f.returnDate) {
+          matchesReturnDate = false;
+        }
+
+        return (
+          matchesSource &&
+          matchesDestination &&
+          matchesDate &&
+          matchesClassType &&
+          (!isRoundTrip || matchesReturnDate)
+        );
       });
 
       this.message = this.flights.length
         ? ''
-        : 'No flights available for this route & date';
+        : 'No flights available for the selected criteria.';
     });
   }
 
@@ -52,7 +93,7 @@ export class WelcomeComponent {
       this.router.navigate(['/signin']);
       return;
     }
-    this.router.navigate(['/booking'] ,{ state: { flight } });
+    this.router.navigate(['/booking'], { state: { flight } });
   }
 
   goToProfile() {

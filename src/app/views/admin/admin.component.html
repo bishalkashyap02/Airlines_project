@@ -296,6 +296,81 @@
                     />
                   </mat-form-field>
                 </div>
+                <div class="col-sm-6 col-md-3">
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Trip Type</mat-label>
+                    <mat-select
+                      [(ngModel)]="newFlight.isRoundTrip"
+                      name="isRoundTrip"
+                    >
+                      <mat-option [value]="false">One-way</mat-option>
+                      <mat-option [value]="true">Round Trip</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-6 col-md-3" *ngIf="newFlight.isRoundTrip">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Return Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker2"
+                      [(ngModel)]="newFlight.returnDate"
+                      name="returnDate"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker2"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                  <label><strong>Class Types & Prices</strong></label>
+                  <div class="d-flex gap-4 align-items-center flex-wrap mt-2">
+                    <mat-checkbox
+                      [(ngModel)]="newFlight.classType.economyEnabled"
+                      name="economyEnabled"
+                    >
+                      Economy
+                    </mat-checkbox>
+                    <mat-form-field
+                      appearance="outline"
+                      class="price-field"
+                      *ngIf="newFlight.classType.economyEnabled"
+                    >
+                      <mat-label>Economy Price</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        [(ngModel)]="newFlight.classType.economyPrice"
+                        name="economyPrice"
+                        min="0"
+                      />
+                    </mat-form-field>
+
+                    <mat-checkbox
+                      [(ngModel)]="newFlight.classType.businessEnabled"
+                      name="businessEnabled"
+                    >
+                      Business
+                    </mat-checkbox>
+                    <mat-form-field
+                      appearance="outline"
+                      class="price-field"
+                      *ngIf="newFlight.classType.businessEnabled"
+                    >
+                      <mat-label>Business Price</mat-label>
+                      <input
+                        matInput
+                        type="number"
+                        [(ngModel)]="newFlight.classType.businessPrice"
+                        name="businessPrice"
+                        min="0"
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
               </div>
 
               <div class="action-buttons mt-3 d-flex gap-2 flex-wrap">

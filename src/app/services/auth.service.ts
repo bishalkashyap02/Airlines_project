@@ -5,28 +5,33 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private apiUrl = 'http://localhost/api';
 
   constructor(private http: HttpClient, private router: Router) {}
 
- signup(payload: { name: string; address: string; username: string; password: string; confirmPassword: string; }): Observable<any> {
-  // Only send the required fields
-  //  const { name, address, username, password } = payload;
-  return this.http.post(`${this.apiUrl}/signup`, payload);
-}
-
+  signup(payload: {
+    name: string;
+    address: string;
+    username: string;
+    password: string;
+    confirmPassword: string;
+  }): Observable<any> {
+    // Only send the required fields
+    //  const { name, address, username, password } = payload;
+    return this.http.post(`${this.apiUrl}/signup`, payload);
+  }
 
   signin(payload: Pick<User, 'username' | 'password'>): Observable<any> {
     return this.http.post(`${this.apiUrl}/signin`, payload);
   }
 
-  saveToken(token: string, role: string,  id: number) {
+  saveToken(token: string, role: string, id: number) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
-     localStorage.setItem('userId',id.toString());
+    localStorage.setItem('userId', id.toString());
   }
 
   getToken(): string | null {

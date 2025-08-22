@@ -2,23 +2,72 @@
   <!-- Page Title -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold text-primary">✈️ Find Your Flight</h2>
-    <button class="btn btn-outline-info shadow-sm" (click)="goToProfile()">Go to Profile</button>
+    <button class="btn btn-outline-info shadow-sm" (click)="goToProfile()">
+      Go to Profile
+    </button>
   </div>
 
   <!-- Search Form -->
   <div class="card shadow-sm border-0 p-4 mb-4">
     <div class="row g-3">
       <div class="col-md">
-        <input type="text" placeholder="Source" [(ngModel)]="search.source" class="form-control form-control-lg">
+        <input
+          type="text"
+          placeholder="Source"
+          [(ngModel)]="search.source"
+          class="form-control form-control-lg"
+        />
       </div>
       <div class="col-md">
-        <input type="text" placeholder="Destination" [(ngModel)]="search.destination" class="form-control form-control-lg">
+        <input
+          type="text"
+          placeholder="Destination"
+          [(ngModel)]="search.destination"
+          class="form-control form-control-lg"
+        />
       </div>
-       <div class="col-md">
-        <input type="date" [(ngModel)]="search.date" class="form-control form-control-lg">
+      <div class="col-md">
+        <input
+          type="date"
+          [(ngModel)]="search.date"
+          class="form-control form-control-lg"
+        />
       </div>
+
+      <div class="col-md">
+        <select
+          [(ngModel)]="search.classType"
+          class="form-select form-select-lg"
+        >
+          <option value="" disabled selected>Select Class</option>
+          <option value="Economy">Economy</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
+      <div class="col-md">
+        <select
+          [(ngModel)]="search.isRoundTrip"
+          class="form-select form-select-lg"
+        >
+          <option [ngValue]="false">One Way</option>
+          <option [ngValue]="true">Round Trip</option>
+        </select>
+      </div>
+
+      <!-- Return Date (Only Round Trip) -->
+      <div class="col-md" *ngIf="search.isRoundTrip">
+        <input
+          type="date"
+          class="form-control form-control-lg"
+          [(ngModel)]="search.returnDate"
+          name="returnDate"
+        />
+      </div>
+
       <div class="col-md-auto">
-        <button (click)="searchFlights()" class="btn btn-success btn-lg px-4">Search</button>
+        <button (click)="searchFlights()" class="btn btn-success btn-lg px-4">
+          Search
+        </button>
       </div>
     </div>
   </div>
@@ -35,18 +84,30 @@
           <th>Name</th>
           <th>Source</th>
           <th>Destination</th>
-          <th (click)="sortFlights('price')" style="cursor:pointer">
+          <th (click)="sortFlights('price')" style="cursor: pointer">
             Price
             <span *ngIf="sortKey === 'price'">
-              <i [class]="sortDirection === 'asc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+              <i
+                [class]="
+                  sortDirection === 'asc'
+                    ? 'bi bi-arrow-up'
+                    : 'bi bi-arrow-down'
+                "
+              ></i>
             </span>
           </th>
           <th>Start</th>
           <th>Arrival</th>
-          <th (click)="sortFlights('totalTime')" style="cursor:pointer">
+          <th (click)="sortFlights('totalTime')" style="cursor: pointer">
             Total Time
             <span *ngIf="sortKey === 'totalTime'">
-              <i [class]="sortDirection === 'asc' ? 'bi bi-arrow-up' : 'bi bi-arrow-down'"></i>
+              <i
+                [class]="
+                  sortDirection === 'asc'
+                    ? 'bi bi-arrow-up'
+                    : 'bi bi-arrow-down'
+                "
+              ></i>
             </span>
           </th>
           <th></th>
@@ -62,8 +123,12 @@
           <td>{{ f.startTime }}</td>
           <td>{{ f.arrivalTime }}</td>
           <td>{{ f.totalTime }}</td>
+          <td>{{ f.classType }}</td>
+          <td>{{ f.returnDate }}</td>
           <td>
-            <button class="btn btn-primary btn-sm px-3" (click)="bookFlight(f)">Book</button>
+            <button class="btn btn-primary btn-sm px-3" (click)="bookFlight(f)">
+              Book
+            </button>
           </td>
         </tr>
       </tbody>
