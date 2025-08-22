@@ -29,6 +29,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FeedbackComponent } from './views/home/feedback/feedback.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     WelcomeComponent,
     ProfileComponent,
     BookingComponent,
-    AdminComponent
+    AdminComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule,
   ],
   providers: [
     {

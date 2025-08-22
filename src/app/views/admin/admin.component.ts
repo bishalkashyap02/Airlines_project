@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Flight } from '../../models/flight.model';
 import { Booking } from '../../models/booking.model';
 import { User } from '../../models/user.model';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-admin',
@@ -23,6 +25,7 @@ export class AdminComponent implements OnInit {
   bookings: Booking[] = [];
   flights: Flight[] = [];
   filteredFlights: Flight[] = [];
+  datasource = new MatTableDataSource<any>([]);
 
   newFlight: Flight = {
     planeid: '',
@@ -45,7 +48,7 @@ export class AdminComponent implements OnInit {
   };
 
   editingFlightId: string | null = null;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
@@ -55,9 +58,13 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit() {
+    this.datasource.paginator = this.paginator;
+  }
+
   login() {
     this.http
-      .post<{ token: string }>('http://localhost/api/admin/login', {
+      .post<{ token: string }>('http://localhost:3000/api/admin/login', {
         username: this.username,
         password: this.password,
       })
@@ -79,7 +86,7 @@ export class AdminComponent implements OnInit {
   }
 
   loadUsers() {
-    this.http.get<User[]>('http://localhost/api/users').subscribe({
+    this.http.get<User[]>('http://localhost:3000/api/users').subscribe({
       next: (data) => {
         this.users = data.filter(
           (user) => user.role?.toLowerCase() !== 'admin'
@@ -90,30 +97,41 @@ export class AdminComponent implements OnInit {
   }
 
   loadBookings() {
-    this.http.get<Booking[]>('http://localhost/api/bookings').subscribe({
+    this.http.get<Booking[]>('http://localhost:3000/api/bookings').subscribe({
       next: (data) => (this.bookings = data),
       error: () => alert('Failed to load bookings'),
     });
   }
 
   loadFlights() {
-    this.http.get<Flight[]>('http://localhost/api/flights').subscribe({
+    this.http.get<Flight[]>('http://localhost:3000/api/flights').subscribe({
       next: (data) => {
         this.flights = data;
         this.filteredFlights = [...data];
+        this.datasource = new MatTableDataSource<any>(this.flights);
+        this.datasource.paginator = this.paginator;
       },
       error: () => alert('Failed to load flights'),
     });
   }
 
   addFlight(form: NgForm) {
+    this.newFlight.date = this.adjustDateForTimezone(this.newFlight.date);
+    if (this.newFlight.returnDate) {
+      this.newFlight.returnDate = this.adjustDateForTimezone(
+        this.newFlight.returnDate
+      );
+    }
+
     if (!this.token) return;
     const headers = new HttpHeaders().set(
       'Authorization',
       `Bearer ${this.token}`
     );
     this.http
-      .post('http://localhost/api/flights', this.newFlight, { headers })
+      .post('http://localhost:3000/api/flights', this.newFlight, {
+        headers,
+      })
       .subscribe({
         next: () => {
           this.loadFlights();
@@ -130,6 +148,13 @@ export class AdminComponent implements OnInit {
   }
 
   updateFlight(form: NgForm) {
+    this.newFlight.date = this.adjustDateForTimezone(this.newFlight.date);
+    if (this.newFlight.returnDate) {
+      this.newFlight.returnDate = this.adjustDateForTimezone(
+        this.newFlight.returnDate
+      );
+    }
+
     if (!this.token || !this.editingFlightId) return;
     const headers = new HttpHeaders().set(
       'Authorization',
@@ -137,7 +162,7 @@ export class AdminComponent implements OnInit {
     );
     this.http
       .put(
-        `http://localhost/api/flights/${this.editingFlightId}`,
+        `http://localhost:3000/api/flights/${this.editingFlightId}`,
         this.newFlight,
         { headers }
       )
@@ -158,7 +183,7 @@ export class AdminComponent implements OnInit {
       `Bearer ${this.token}`
     );
     this.http
-      .delete(`http://localhost/api/flights/${id}`, { headers })
+      .delete(`http://localhost:3000/api/flights/${id}`, { headers })
       .subscribe({
         next: () => {
           this.loadFlights();
@@ -272,5 +297,12 @@ export class AdminComponent implements OnInit {
         flight.source.toLowerCase().includes(lowerFilter) ||
         flight.destination.toLowerCase().includes(lowerFilter)
     );
+  }
+
+  adjustDateForTimezone(dateStr: string): string {
+    const localDate = new Date(dateStr);
+    const timezoneOffset = localDate.getTimezoneOffset() * 60000;
+    const correctedDate = new Date(localDate.getTime() - timezoneOffset);
+    return correctedDate.toISOString().split('T')[0];
   }
 }

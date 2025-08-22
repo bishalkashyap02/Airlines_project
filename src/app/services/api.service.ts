@@ -9,7 +9,7 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'http://localhost/api';
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 

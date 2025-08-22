@@ -5,8 +5,8 @@ import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = 'http://localhost/api/users';
-   private tokenKey = 'token';
+  private apiUrl = 'http://localhost:3000/api/users';
+  private tokenKey = 'token';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class UserService {
     return this.http
       .post<{ token: string }>(`${this.apiUrl}/login`, { username, password })
       .pipe(
-        tap((res: { token: string; }) => {
+        tap((res: { token: string }) => {
           // Save token in service + localStorage
           localStorage.setItem(this.tokenKey, res.token);
         })
@@ -34,7 +34,8 @@ export class UserService {
     localStorage.removeItem(this.tokenKey);
   }
 }
-function tap(arg0: (res: { token: string; }) => void): import("rxjs").OperatorFunction<{ token: string; }, { token: string; }> {
-    throw new Error('Function not implemented.');
+function tap(
+  arg0: (res: { token: string }) => void
+): import('rxjs').OperatorFunction<{ token: string }, { token: string }> {
+  throw new Error('Function not implemented.');
 }
-

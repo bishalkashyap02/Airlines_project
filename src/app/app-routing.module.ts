@@ -9,9 +9,9 @@ import { ProfileComponent } from './views/home/profile/profile.component';
 import { AdminGuard } from './services/admin.guard';
 import { AuthGuard } from './services/auth.guard';
 import { BookingComponent } from './views/home/booking/booking.component';
-
+import { FeedbackComponent } from './views/home/feedback/feedback.component';
 const routes: Routes = [
-  { path: 'home', component: HomeComponent ,pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, pathMatch: 'full' },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   // {
@@ -19,10 +19,15 @@ const routes: Routes = [
   //   loadChildren: () =>
   //     import('./views/admin/admin.module').then((m) => m.AdminModule), canActivate: [AdminGuard]
   // },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
   { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [AuthGuard] },
+  { path: 'feedback', component: FeedbackComponent },
   { path: '**', redirectTo: '/home' },
 ];
 
