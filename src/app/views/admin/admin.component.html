@@ -48,9 +48,9 @@
       [(selectedIndex)]="tabIndex"
       (selectedIndexChange)="setTabByIndex($event)"
     >
-      <mat-tab label="Users" class="tabs-user">
+      <mat-tab label="Users" class="tabs-users">
         <!-- Users Tab -->
-        <section class="tab-section">
+        <section class="tab-section glossy-card">
           <h4>User List</h4>
           <table
             mat-table
@@ -90,9 +90,9 @@
         </section>
       </mat-tab>
 
-      <mat-tab label="Bookings">
+      <mat-tab label="Bookings" class="tabs-users">
         <!-- Bookings Tab -->
-        <section class="tab-section">
+        <section class="tab-section glossy-card">
           <h4>Booking List</h4>
           <table
             mat-table
@@ -157,9 +157,9 @@
         </section>
       </mat-tab>
 
-      <mat-tab label="Flights">
+      <mat-tab label="Flights" class="tabs-users">
         <!-- Flights Tab -->
-        <section class="tab-section">
+        <section class="tab-section glossy-card">
           <h4>Manage Flights</h4>
           <mat-card class="mb-4 p-3">
             <form
@@ -408,7 +408,7 @@
           <!-- Flight Table -->
           <table
             mat-table
-            [dataSource]="flights"
+            [dataSource]="datasource"
             class="mat-elevation-z8 full-width-table"
             matSort
           >
@@ -513,6 +513,12 @@
               "
             ></tr>
           </table>
+          <mat-paginator
+            [pageSize]="1"
+            [pageSizeOptions]="[1, 2, 3]"
+            aria-label="select Page"
+            showFirstLastButtons
+          ></mat-paginator>
         </section>
       </mat-tab>
     </mat-tab-group>

@@ -39,6 +39,14 @@
       "username": "chinu1",
       "password": "$2b$08$45soG6JxTJhPSG9FSNsZA.L8Frjc5dl/nuf4IuN3bSrB/1ubCJ/KC",
       "role": "user"
+    },
+    {
+      "id": 1755843187301,
+      "name": "xyzab",
+      "address": "Berhampur",
+      "username": "xyz",
+      "password": "$2b$08$HSluo0/MCUt.vOOh1UoV2eMfKI32wzAusHkvkhYzQQ7NawwmldWs6",
+      "role": "user"
     }
   ],
   "planedetails": [
@@ -115,6 +123,44 @@
         "businessEnabled": true,
         "businessPrice": 6548
       }
+    },
+    {
+      "planeid": "309",
+      "planename": "AirIndia",
+      "source": "Bhubaneswar",
+      "destination": "Bangaluru",
+      "date": "2025-09-23T18:30:00.000Z",
+      "returnDate": "",
+      "price": 4098,
+      "startTime": "3:00 AM",
+      "arrivalTime": "5:00 PM",
+      "totalTime": "14h 0m",
+      "isRoundTrip": false,
+      "classType": {
+        "economyEnabled": true,
+        "economyPrice": 4098,
+        "businessEnabled": true,
+        "businessPrice": 5436
+      }
+    },
+    {
+      "planeid": "310",
+      "planename": "AirIndia1",
+      "source": "Bhubaneswar",
+      "destination": "Bangaluru",
+      "date": "2025-09-26",
+      "returnDate": "2025-09-29",
+      "price": 2000,
+      "startTime": "4:25 AM",
+      "arrivalTime": "5:24 PM",
+      "totalTime": "12h 59m",
+      "isRoundTrip": true,
+      "classType": {
+        "economyEnabled": true,
+        "economyPrice": 4056,
+        "businessEnabled": true,
+        "businessPrice": 6540
+      }
     }
   ],
   "bookings": [
@@ -148,6 +194,20 @@
     },
     {
       "id": 1755829532590,
+      "userId": 1754809035720,
+      "username": "Dhanada",
+      "planeId": "308",
+      "planeName": "Airbus 370",
+      "source": "London",
+      "destination": "New York",
+      "date": "2025-08-29T18:30:00.000Z",
+      "price": 5467,
+      "startTime": "4:00 AM",
+      "arrivalTime": "5:00 PM",
+      "totalTime": "13h 0m"
+    },
+    {
+      "id": 1755839719771,
       "userId": 1754809035720,
       "username": "Dhanada",
       "planeId": "308",

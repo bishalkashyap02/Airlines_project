@@ -6,3 +6,20 @@
 mat-horizontal-stepper {
   margin: 24px;
 }
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end; /* pushes button to the right */
+  margin-top: 1rem; /* optional: space above button */
+}
+.step-actions1 {
+  display: flex;
+  justify-content: space-between; /* Back on left, Next on right */
+  margin-top: 1rem;
+}
+
+.step-actions3 {
+  display: flex;
+  justify-content: flex-end; /* aligns to the right */
+  margin-top: 1rem;
+}

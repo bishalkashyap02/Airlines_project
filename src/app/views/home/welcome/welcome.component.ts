@@ -19,12 +19,24 @@ export class WelcomeComponent {
     returnDate: '',
   };
   flights: Flight[] = [];
+  recommendedFlights: Flight[] = [];
   message = '';
 
   sortKey: keyof Flight | '' = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(private api: ApiService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadRecommendedFlights();
+  }
+
+  // Load recommended flights from data.json
+  loadRecommendedFlights() {
+    this.api.getFlights().subscribe((allFlights) => {
+      this.recommendedFlights = allFlights.slice(0, 4);
+    });
+  }
 
   searchFlights() {
     this.api.getFlights().subscribe((allFlights) => {
@@ -124,5 +136,12 @@ export class WelcomeComponent {
 
       return 0;
     });
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userId');
+    this.router.navigate(['/signin']);
   }
 }
