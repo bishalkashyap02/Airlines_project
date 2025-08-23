@@ -35,6 +35,7 @@ const writeData = (data) => {
   fs.writeFileSync("data.json", JSON.stringify(data, null, 2));
 };
 
+
 /* ---------------- USERS ---------------- */
 app.post("/api/signup", (req, res) => {
   const { name, address, username, password, confirmPassword } = req.body;

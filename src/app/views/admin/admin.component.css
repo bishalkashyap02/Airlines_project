@@ -108,3 +108,14 @@
   height: 100vh;
 
 } */
+
+.snackbar-success {
+  background: #4caf50; /* green */
+  color: white;
+}
+
+.snackbar-error {
+  background: #f44336; /* red */
+  color: white;
+}
+

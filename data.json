@@ -51,67 +51,12 @@
   ],
   "planedetails": [
     {
-      "planeid": 301,
-      "planename": "Embraer E195",
-      "source": "Los Angeles",
-      "destination": "Tokyo",
-      "date": "2025-09-15",
-      "price": 6034,
-      "startTime": "10:00",
-      "arrivalTime": "15:00",
-      "totalTime": "14h"
-    },
-    {
-      "planeid": 302,
-      "planename": "Boeing 777",
-      "source": "New York",
-      "destination": "London",
-      "date": "2025-09-18",
-      "price": 5034,
-      "startTime": "22:30",
-      "arrivalTime": "10:00",
-      "totalTime": "7h 30m"
-    },
-    {
-      "planeid": 303,
-      "planename": "Airbus A380",
-      "source": "Dubai",
-      "destination": "Sydney",
-      "date": "2025-09-20",
-      "price": 4034,
-      "startTime": "08:45",
-      "arrivalTime": "22:00",
-      "totalTime": "13h 15m"
-    },
-    {
-      "planeid": 304,
-      "planename": "Boeing 737 MAX",
-      "source": "Chicago",
-      "destination": "Toronto",
-      "date": "2025-09-22",
-      "price": 3036,
-      "startTime": "14:15",
-      "arrivalTime": "16:00",
-      "totalTime": "1h 45m"
-    },
-    {
-      "planeid": "305",
-      "planename": "AirBus",
-      "source": "London",
-      "destination": "New York",
-      "date": "2025-08-28T18:30:00.000Z",
-      "price": 2034,
-      "startTime": "9:25 AM",
-      "arrivalTime": "3:00 PM",
-      "totalTime": "5h 35m"
-    },
-    {
-      "planeid": "308",
+      "planeid": "301",
       "planename": "Airbus 370",
       "source": "London",
       "destination": "New York",
-      "date": "2025-08-29T18:30:00.000Z",
-      "returnDate": "2025-08-28T18:30:00.000Z",
+      "date": "2025-09-30",
+      "returnDate": "2025-10-29",
       "price": 5467,
       "startTime": "4:00 AM",
       "arrivalTime": "5:00 PM",
@@ -121,45 +66,26 @@
         "economyEnabled": true,
         "economyPrice": 5467,
         "businessEnabled": true,
-        "businessPrice": 6548
+        "businessPrice": 6542
       }
     },
     {
-      "planeid": "309",
-      "planename": "AirIndia",
+      "planeid": "302",
+      "planename": "Airbus 370",
       "source": "Bhubaneswar",
-      "destination": "Bangaluru",
-      "date": "2025-09-23T18:30:00.000Z",
-      "returnDate": "",
-      "price": 4098,
-      "startTime": "3:00 AM",
-      "arrivalTime": "5:00 PM",
-      "totalTime": "14h 0m",
-      "isRoundTrip": false,
-      "classType": {
-        "economyEnabled": true,
-        "economyPrice": 4098,
-        "businessEnabled": true,
-        "businessPrice": 5436
-      }
-    },
-    {
-      "planeid": "310",
-      "planename": "AirIndia1",
-      "source": "Bhubaneswar",
-      "destination": "Bangaluru",
-      "date": "2025-09-26",
-      "returnDate": "2025-09-29",
-      "price": 2000,
-      "startTime": "4:25 AM",
-      "arrivalTime": "5:24 PM",
-      "totalTime": "12h 59m",
+      "destination": "Berhampur",
+      "date": "2025-09-08",
+      "returnDate": "2025-09-16",
+      "price": 3765,
+      "startTime": "3:20 AM",
+      "arrivalTime": "3:35 PM",
+      "totalTime": "12h 15m",
       "isRoundTrip": true,
       "classType": {
         "economyEnabled": true,
-        "economyPrice": 4056,
+        "economyPrice": 3765,
         "businessEnabled": true,
-        "businessPrice": 6540
+        "businessPrice": 5647
       }
     }
   ],

@@ -7,6 +7,7 @@ import { Booking } from '../../models/booking.model';
 import { User } from '../../models/user.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin',
@@ -49,7 +50,11 @@ export class AdminComponent implements OnInit {
 
   editingFlightId: string | null = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
@@ -76,6 +81,16 @@ export class AdminComponent implements OnInit {
         },
         error: () => alert('Invalid credentials'),
       });
+  }
+
+  showMessage(message: string, isError = false) {
+    console.log('Snackbar called with:', message); // Debug
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      panelClass: isError ? ['snackbar-error'] : ['snackbar-success'],
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+    });
   }
 
   setTab(tabName: string) {
@@ -134,9 +149,10 @@ export class AdminComponent implements OnInit {
       })
       .subscribe({
         next: () => {
+          console.log('Snackbar should appear now!');
           this.loadFlights();
           this.cancelEdit(form);
-          alert('Flight added successfully!');
+          this.showMessage('Flight added successfully!');
         },
         error: () => alert('Failed to add flight'),
       });
@@ -170,7 +186,7 @@ export class AdminComponent implements OnInit {
         next: () => {
           this.loadFlights();
           this.cancelEdit(form);
-          alert('Flight updated successfully!');
+          this.showMessage('Flight updated successfully!');
         },
         error: () => alert('Failed to update flight'),
       });
@@ -187,7 +203,7 @@ export class AdminComponent implements OnInit {
       .subscribe({
         next: () => {
           this.loadFlights();
-          alert('Flight deleted successfully!');
+          this.showMessage('Flight deleted successfully!');
         },
         error: () => alert('Failed to delete flight'),
       });

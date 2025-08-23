@@ -3,6 +3,7 @@ import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
 import { Flight } from '../../../models/flight.model';
 import { Booking } from '../../../models/booking.model';
+import { ConnectionService } from '../../../services/connection.service';
 
 @Component({
   selector: 'app-welcome',
@@ -24,8 +25,13 @@ export class WelcomeComponent {
 
   sortKey: keyof Flight | '' = '';
   sortDirection: 'asc' | 'desc' = 'asc';
+  public connected: boolean = true;
+  isRoundTrip: boolean = false;
 
-  constructor(private api: ApiService, private router: Router) {}
+
+  constructor(private api: ApiService, private router: Router, private connection: ConnectionService ) {
+     connection.Changes.subscribe((state) => (this.connected = state));
+  }
 
   ngOnInit(): void {
     this.loadRecommendedFlights();
