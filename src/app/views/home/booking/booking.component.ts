@@ -11,7 +11,7 @@ import { ApiService } from '../../../services/api.service';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.css']
+  styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent {
   detailsForm: FormGroup;
@@ -37,13 +37,13 @@ export class BookingComponent {
       name: ['', Validators.required],
       gender: ['', Validators.required],
       age: ['', Validators.required],
-      autoFill: [false]
+      autoFill: [false],
     });
 
     this.securityForm = this.fb.group({
       luggage: [false, Validators.requiredTrue],
       drugs: [false, Validators.requiredTrue],
-      knife: [false, Validators.requiredTrue]
+      knife: [false, Validators.requiredTrue],
     });
 
     this.paymentForm = this.fb.group({});
@@ -55,18 +55,20 @@ export class BookingComponent {
     const userId = Number(localStorage.getItem('userId'));
 
     if (isAutoFill && userId) {
-      this.http.get<User>(`http://localhost/api/users/${userId}`).subscribe({
-        next: (user) => {
-          this.currentUser = user;
-          this.detailsForm.patchValue({
-            name: user.name
-          });
-        },
-        error: () => {
-          alert('Failed to fetch user info');
-          this.detailsForm.patchValue({ name: '' });
-        }
-      });
+      this.http
+        .get<User>(`http://localhost:3000/api/users/${userId}`)
+        .subscribe({
+          next: (user) => {
+            this.currentUser = user;
+            this.detailsForm.patchValue({
+              name: user.name,
+            });
+          },
+          error: () => {
+            alert('Failed to fetch user info');
+            this.detailsForm.patchValue({ name: '' });
+          },
+        });
     } else {
       this.detailsForm.patchValue({ name: '' });
     }
@@ -101,7 +103,9 @@ export class BookingComponent {
     };
 
     this.api.bookFlight(booking).subscribe(() => {
-      this.snackBar.open('Flight booked successfully!', 'Close', { duration: 3000 });
+      this.snackBar.open('Flight booked successfully!', 'Close', {
+        duration: 3000,
+      });
       this.router.navigate(['/profile']); // ✅ redirect to profile after booking
     });
   }

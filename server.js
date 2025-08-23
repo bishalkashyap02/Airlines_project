@@ -9,7 +9,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* ---------- File Helpers ---------- */
 const ensureDataFile = () => {
   if (!fs.existsSync("data.json")) {
     fs.writeFileSync(
@@ -77,7 +76,6 @@ app.post("/api/signin", (req, res) => {
     { expiresIn: "5h" }
   );
 
-  // ✅ Send back id also
   res.send({
     token,
     role: user.role,
@@ -145,6 +143,18 @@ app.delete("/api/bookings/:id", verifyToken, (req, res) => {
   });
   writeData(data);
   res.send({ message: "Booking canceled" });
+});
+
+app.get("/api/users/:id", verifyToken, (req, res) => {
+  const user = db
+    .get("users")
+    .find({ id: Number(req.params.id) })
+    .value();
+  if (!user) return res.status(404).send({ message: "User not found" });
+  if (req.user.role !== "admin" && req.user.id !== user.id) {
+    return res.status(403).send({ message: "Access denied" });
+  }
+  res.send(user);
 });
 
 /* ---------------- ADMIN DATA ---------------- */

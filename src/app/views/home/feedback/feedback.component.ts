@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent {
+  constructor(private router: Router) {}
   isOpen = false;
 
   feedback = {
@@ -23,5 +25,6 @@ export class FeedbackComponent {
     alert('Thank you for your feedback!');
     this.feedback = { name: '', email: '', message: '' };
     this.isOpen = false;
+    this.router.navigateByUrl('/');
   }
 }

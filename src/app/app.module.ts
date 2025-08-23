@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ConnectionService } from './services/connection.service';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +32,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FeedbackComponent } from './views/home/feedback/feedback.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatIconModule,
     MatPaginatorModule,
+    MatSelectModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     {
@@ -84,6 +93,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    ConnectionService,
   ],
   bootstrap: [AppComponent],
 })
