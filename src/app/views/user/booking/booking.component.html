@@ -2,7 +2,7 @@
   <!-- Details Step -->
   <mat-step [stepControl]="detailsForm">
     <form [formGroup]="detailsForm">
-      <ng-template matStepLabel>Details</ng-template>
+      <ng-template matStepLabel>Who is travelling</ng-template>
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Name</mat-label>
@@ -42,15 +42,19 @@
   <!-- Security Step -->
   <mat-step [stepControl]="securityForm">
     <form [formGroup]="securityForm">
-      <ng-template matStepLabel>Security</ng-template>
+      <ng-template matStepLabel>Additional Services</ng-template>
 
-      <mat-checkbox formControlName="luggage">
-        Luggage weight less than 15kg
+      <mat-checkbox formControlName="food"> Want food </mat-checkbox>
+      <br />
+
+      <mat-checkbox formControlName="accommodation">
+        Need accommodation
       </mat-checkbox>
       <br />
-      <mat-checkbox formControlName="drugs"> Not taking drugs </mat-checkbox>
-      <br />
-      <mat-checkbox formControlName="knife"> Not taking knife </mat-checkbox>
+
+      <mat-checkbox formControlName="transport">
+        Require transport facility
+      </mat-checkbox>
 
       <div class="step-actions1">
         <button mat-button matStepperPrevious>Back</button>
@@ -69,16 +73,16 @@
     <p><strong>Age:</strong> {{ detailsForm.value.age }}</p>
 
     <p>
-      <strong>Luggage:</strong>
-      {{ securityForm.value.luggage ? "Yes ✅" : "No ❌" }}
+      <strong>Food:</strong>
+      {{ securityForm.value.food ? "Yes ✅" : "No ❌" }}
     </p>
     <p>
-      <strong>Drugs:</strong>
-      {{ securityForm.value.drugs ? "Yes ✅" : "No ❌" }}
+      <strong>Accomodation:</strong>
+      {{ securityForm.value.accommodation ? "Yes ✅" : "No ❌" }}
     </p>
     <p>
-      <strong>Knife:</strong>
-      {{ securityForm.value.knife ? "Yes ✅" : "No ❌" }}
+      <strong>Transport:</strong>
+      {{ securityForm.value.transport ? "Yes ✅" : "No ❌" }}
     </p>
 
     <!-- Show flight details if available -->

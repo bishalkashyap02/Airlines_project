@@ -47,6 +47,14 @@
       "username": "xyz",
       "password": "$2b$08$HSluo0/MCUt.vOOh1UoV2eMfKI32wzAusHkvkhYzQQ7NawwmldWs6",
       "role": "user"
+    },
+    {
+      "id": 1756007721238,
+      "name": "Lina",
+      "address": "Bhubaneswar",
+      "username": "lina",
+      "password": "$2b$08$gQxbQwlIi3AbAFtohTxkk.jNZkvM4dG1KtPd/VdodyjFUrK6XV1O.",
+      "role": "user"
     }
   ],
   "planedetails": [
@@ -141,6 +149,20 @@
       "source": "London",
       "destination": "New York",
       "date": "2025-08-29T18:30:00.000Z",
+      "price": 5467,
+      "startTime": "4:00 AM",
+      "arrivalTime": "5:00 PM",
+      "totalTime": "13h 0m"
+    },
+    {
+      "id": 1756007834259,
+      "userId": 1756007721238,
+      "username": "lina",
+      "planeId": "301",
+      "planeName": "Airbus 370",
+      "source": "London",
+      "destination": "New York",
+      "date": "2025-09-30",
       "price": 5467,
       "startTime": "4:00 AM",
       "arrivalTime": "5:00 PM",

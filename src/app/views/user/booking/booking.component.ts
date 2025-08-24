@@ -41,22 +41,21 @@ export class BookingComponent {
     });
 
     this.securityForm = this.fb.group({
-      luggage: [false, Validators.requiredTrue],
-      drugs: [false, Validators.requiredTrue],
-      knife: [false, Validators.requiredTrue],
+      food: [false],
+      accommodation: [false],
+      transport: [false],
     });
 
     this.paymentForm = this.fb.group({});
   }
 
-  /** 🔹 Toggle autofill from backend using userId */
   toggleAutoFill() {
     const isAutoFill = this.detailsForm.value.autoFill;
     const userId = Number(localStorage.getItem('userId'));
 
     if (isAutoFill && userId) {
       this.http
-        .get<User>(`http://localhost:3000/api/users/${userId}`)
+        .get<User>(`http://localhost/api/users/${userId}`)
         .subscribe({
           next: (user) => {
             this.currentUser = user;
@@ -74,7 +73,6 @@ export class BookingComponent {
     }
   }
 
-  /** 🔹 Book selected flight */
   bookFlight(selectedFlight: any) {
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) {
@@ -106,16 +104,15 @@ export class BookingComponent {
       this.snackBar.open('Flight booked successfully!', 'Close', {
         duration: 3000,
       });
-      this.router.navigate(['/profile']); // ✅ redirect to profile after booking
+      this.router.navigate(['/profile']);
     });
   }
 
-  /** 🔹 Navigate to profile */
   goToProfile() {
     this.router.navigate(['/profile']);
   }
 
-  /** 🔹 Pay and finalize booking */
+  /** Pay and finalize booking */
   pay() {
     if (!this.detailsForm.valid || !this.securityForm.valid) {
       alert('Please complete all steps before payment.');
