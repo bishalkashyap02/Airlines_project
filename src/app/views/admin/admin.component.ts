@@ -8,7 +8,9 @@ import { User } from '../../models/user.model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { UserService } from '../../models/user.service';
+import { FlightService } from '../../models/flight.service';
+import { BookingService } from '../../models/booking.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -53,7 +55,10 @@ export class AdminComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private flightService : FlightService,
+    private userService : UserService,
+    private bookingservice : BookingService
   ) {}
 
   ngOnInit(): void {
@@ -101,25 +106,21 @@ export class AdminComponent implements OnInit {
   }
 
   loadUsers() {
-    this.http.get<User[]>('http://localhost/api/users').subscribe({
-      next: (data) => {
-        this.users = data.filter(
-          (user) => user.role?.toLowerCase() !== 'admin'
-        );
-      },
+     this.userService.getUsers().subscribe({
+      next: (data) => (this.users = data.filter((u) => u.role?.toLowerCase() !== 'admin')),
       error: () => alert('Failed to load users'),
     });
   }
 
   loadBookings() {
-    this.http.get<Booking[]>('http://localhost/api/bookings').subscribe({
+     this.bookingservice.getBookings().subscribe({
       next: (data) => (this.bookings = data),
       error: () => alert('Failed to load bookings'),
     });
   }
 
   loadFlights() {
-    this.http.get<Flight[]>('http://localhost/api/flights').subscribe({
+     this.flightService.getFlights().subscribe({
       next: (data) => {
         this.flights = data;
         this.filteredFlights = [...data];
@@ -143,11 +144,7 @@ export class AdminComponent implements OnInit {
       'Authorization',
       `Bearer ${this.token}`
     );
-    this.http
-      .post('http://localhost/api/flights', this.newFlight, {
-        headers,
-      })
-      .subscribe({
+     this.flightService.addFlight(this.newFlight, this.token).subscribe({
         next: () => {
           console.log('Snackbar should appear now!');
           this.loadFlights();
@@ -176,13 +173,7 @@ export class AdminComponent implements OnInit {
       'Authorization',
       `Bearer ${this.token}`
     );
-    this.http
-      .put(
-        `http://localhost/api/flights/${this.editingFlightId}`,
-        this.newFlight,
-        { headers }
-      )
-      .subscribe({
+     this.flightService.updateFlight(this.editingFlightId, this.newFlight, this.token).subscribe({
         next: () => {
           this.loadFlights();
           this.cancelEdit(form);
@@ -198,9 +189,7 @@ export class AdminComponent implements OnInit {
       'Authorization',
       `Bearer ${this.token}`
     );
-    this.http
-      .delete(`http://localhost/api/flights/${id}`, { headers })
-      .subscribe({
+    this.flightService.deleteFlight(id, this.token).subscribe({
         next: () => {
           this.loadFlights();
           this.showMessage('Flight deleted successfully!');

@@ -29,7 +29,6 @@ export class BookingComponent {
     private router: Router,
     private api: ApiService
   ) {
-    // ✅ Retrieve selected flight from router state
     const nav = this.router.getCurrentNavigation();
     this.selectedFlight = nav?.extras?.state?.['flight'] || null;
 
